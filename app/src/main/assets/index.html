@@ -17,7 +17,7 @@
 <body class="dark-mode">
 
   <!-- TOP BANNER (Supabase status + Quick SQL script) -->
-  <div id="connectionBanner" class="conn-banner">
+  <div id="connectionBanner" class="conn-banner" style="display:none;">
     <div class="banner-content">
       <div class="banner-left">
         <span class="status-indicator live"></span>
@@ -27,7 +27,7 @@
         <span class="reader-badge-pill" data-i18n="reader_free_notice">
           <i class="fa-solid fa-lock-open"></i> Accès Lecteur libre (sans inscription)
         </span>
-        <button class="btn-text-action" id="openSqlBtn" title="Voir les requêtes SQL Supabase">
+        <button class="btn-text-action" id="openSqlBtn" title="Voir les requêtes SQL Supabase" style="display:none;">
           <i class="fa-solid fa-database"></i> <span data-i18n="sql_setup_btn">Script SQL</span>
         </button>
       </div>
@@ -406,11 +406,6 @@
               <i class="fa-brands fa-bitcoin"></i> <span data-i18n="pay_nowpayments_btn">Payer $0.99 avec NOWPayments</span>
             </button>
 
-            <!-- Test / Fast-Unlock for previewers -->
-            <button class="btn-text-action mt-3" id="simulatePaymentUnlockBtn">
-              <i class="fa-solid fa-bolt"></i> <span data-i18n="simulate_unlock_btn">[Mode Test] Simuler le paiement instantané</span>
-            </button>
-
             <!-- Accepted Crypto Icons -->
             <div class="supported-cryptos">
               <span>Règlement crypto décentralisé et anonyme :</span>
@@ -761,10 +756,7 @@
         <button class="btn btn-nowpayments btn-block" id="confirmNowPaymentsRedirectBtn">
           <i class="fa-solid fa-arrow-up-right-from-square"></i> <span data-i18n="open_nowpayments_btn">Ouvrir NOWPayments.io ($0.99)</span>
         </button>
-        <button class="btn btn-ghost btn-block" id="modalSimulateSuccessBtn">
-          <i class="fa-solid fa-unlock-keyhole"></i> <span data-i18n="demo_unlock_btn">Débloquer en Mode Test (Démo)</span>
-        </button>
-      </div>
+        </div>
 
       <p class="crypto-security-note">
         <i class="fa-solid fa-user-secret"></i> Aucun compte requis pour les lecteurs. Paiement crypto direct, anonyme et instantané via NOWPayments.

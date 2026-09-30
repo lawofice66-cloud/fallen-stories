@@ -1105,25 +1105,44 @@ function formatStoryContent(text) {
 }
 
 function openNowPaymentsCheckout() {
-  if (!APP_STATE.activeEpisode || !APP_STATE.activeStory) return;
-
-  const modal = document.getElementById("nowPaymentsModal");
-  document.getElementById("checkoutStoryTitle").textContent = APP_STATE.activeStory.title;
-  document.getElementById("checkoutEpTitle").textContent = `${APP_STATE.activeEpisode.title} (Épisode ${APP_STATE.activeEpisode.episode_number})`;
-  document.getElementById("checkoutPriceVal").textContent = (APP_STATE.activeEpisode.price || 0.99).toFixed(2);
-
-  modal.classList.add("active");
+  if (!APP_STATE.activeEpisode) return;
+  const epId = APP_STATE.activeEpisode.id;
+  const storyId = APP_STATE.activeStory ? APP_STATE.activeStory.id : "";
+  const currentUrl = window.location.origin + window.location.pathname;
+  const successUrl = `${currentUrl}?success=1&episode_id=${epId}${storyId ? '&story_id=' + storyId : ''}`;
+  const targetUrl = `https://nowpayments.io/payment/?price_amount=0.99&price_currency=usd&order_id=INAVOUABLE_${epId}_${Date.now()}&success_url=${encodeURIComponent(successUrl)}`;
+  showToast("Redirection vers la passerelle sécurisée NOWPayments.io ($0.99)...", "info");
+  setTimeout(() => {
+    window.location.href = targetUrl;
+  }, 350);
 }
 
-function unlockCurrentEpisode() {
-  if (!APP_STATE.activeEpisode) return;
+function checkNowPaymentsCallback() {
+  const params = new URLSearchParams(window.location.search);
+  const success = params.get("success");
+  const npStatus = params.get("np_status");
+  const payment = params.get("payment");
+  const episodeId = params.get("episode_id");
 
-  APP_STATE.unlockedEpisodes[APP_STATE.activeEpisode.id] = true;
-  localStorage.setItem("recits_inavouables_unlocked", JSON.stringify(APP_STATE.unlockedEpisodes));
-
-  showToast(`Chapitre débloqué avec succès ! Bonne lecture.`, "success");
-  document.getElementById("nowPaymentsModal").classList.remove("active");
-  loadEpisode(APP_STATE.activeEpisode);
+  if (success === "1" || payment === "success" || npStatus === "confirmed" || npStatus === "finished") {
+    if (episodeId) {
+      APP_STATE.unlockedEpisodes[episodeId] = true;
+      const num = parseInt(episodeId, 10);
+      if (!isNaN(num)) APP_STATE.unlockedEpisodes[num] = true;
+    } else if (APP_STATE.activeEpisode && !APP_STATE.activeEpisode.is_free && APP_STATE.activeEpisode.episode_number !== 1) {
+      APP_STATE.unlockedEpisodes[APP_STATE.activeEpisode.id] = true;
+    }
+    localStorage.setItem("recits_inavouables_unlocked", JSON.stringify(APP_STATE.unlockedEpisodes));
+    showToast("Paiement validé par NOWPayments ! Épisode débloqué.", "success");
+    try {
+      const cleanUrl = window.location.origin + window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+    } catch (e) {}
+    renderEpisodesPills();
+    if (APP_STATE.activeEpisode) {
+      loadEpisode(APP_STATE.activeEpisode);
+    }
+  }
 }
 
 // ============================================================================
@@ -1570,19 +1589,16 @@ function setupEventListeners() {
     }
   });
 
-  // NOWPayments Paywall Buttons
-  document.getElementById("nowPaymentsPayBtn").addEventListener("click", openNowPaymentsCheckout);
-  document.getElementById("simulatePaymentUnlockBtn").addEventListener("click", unlockCurrentEpisode);
-  document.getElementById("modalSimulateSuccessBtn").addEventListener("click", unlockCurrentEpisode);
+  // NOWPayments Paywall Buttons - Redirection directe sécurisée vers NOWPayments.io
+  const nowPaymentsBtn = document.getElementById("nowPaymentsPayBtn");
+  if (nowPaymentsBtn) {
+    nowPaymentsBtn.addEventListener("click", openNowPaymentsCheckout);
+  }
 
-  document.getElementById("confirmNowPaymentsRedirectBtn").addEventListener("click", () => {
-    const targetUrl = `https://nowpayments.io/payment/?price_amount=0.99&price_currency=usd&order_id=INAVOUABLE_${Date.now()}`;
-    window.open(targetUrl, "_blank");
-    showToast("Redirection vers la passerelle sécurisée NOWPayments...", "info");
-    setTimeout(() => {
-      unlockCurrentEpisode();
-    }, 2500);
-  });
+  const confirmNowPaymentsBtn = document.getElementById("confirmNowPaymentsRedirectBtn");
+  if (confirmNowPaymentsBtn) {
+    confirmNowPaymentsBtn.addEventListener("click", openNowPaymentsCheckout);
+  }
 
   document.querySelectorAll(".crypto-radio-card").forEach(card => {
     card.addEventListener("click", () => {
@@ -1889,6 +1905,7 @@ document.addEventListener("click", (e) => {
 });
 
 function initApp() {
+  checkNowPaymentsCallback();
   setLanguage(currentLang);
 
   const savedUser = localStorage.getItem("recits_inavouables_user");
