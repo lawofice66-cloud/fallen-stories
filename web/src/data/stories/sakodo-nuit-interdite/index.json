@@ -8,10 +8,11 @@
   "author_name": "Sakodo",
   "preset": "Cyberpunk Neon + Sensuel Ombre + Nuit Interdite",
   "coverUrl": "https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=800",
-  "description": "Dans la mégalopole cyberpunk sous une pluie de néons, Sakodo franchit les frontières de l'interdit lors d'une nuit de vertige, de soie et de désirs inavouables. Un ebook érotique en 5 épisodes intenses et littéraires.",
+  "description": "Dans la mégalopole cyberpunk de Neo-Kuro sous une pluie de néons écarlates, Sakodo franchit les frontières de l'interdit lors d'une nuit de vertige, de soie et de désirs inavouables. Un ebook érotique complet en 5 longs chapitres intenses et littéraires.",
   "isEbook": true,
-  "badge": "EBOOK 5 ÉPISODES",
+  "badge": "EBOOK 5 x 3000 mots",
   "totalEpisodes": 5,
+  "totalWordCount": 15600,
   "views": 4250,
   "episodes": [
     {
@@ -20,6 +21,7 @@
       "titre": "Le Reflet des Néons Écarlates",
       "isFree": true,
       "price": 0.00,
+      "wordCount": 3120,
       "file": "episode-1.json"
     },
     {
@@ -28,6 +30,7 @@
       "titre": "Murmures dans la Pénombre",
       "isFree": false,
       "price": 0.99,
+      "wordCount": 3080,
       "file": "episode-2.json"
     },
     {
@@ -36,6 +39,7 @@
       "titre": "Le Frisson de l'Étreinte",
       "isFree": false,
       "price": 0.99,
+      "wordCount": 3150,
       "file": "episode-3.json"
     },
     {
@@ -44,6 +48,7 @@
       "titre": "Au-Delà du Vertige",
       "isFree": false,
       "price": 0.99,
+      "wordCount": 3110,
       "file": "episode-4.json"
     },
     {
@@ -52,6 +57,7 @@
       "titre": "L'Aube des Inavouables",
       "isFree": false,
       "price": 0.99,
+      "wordCount": 3140,
       "file": "episode-5.json"
     }
   ]

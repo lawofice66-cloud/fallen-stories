@@ -20,6 +20,7 @@ export interface StoryEpisode {
   coverUrl: string;
   contenu: string;
   isEbook: boolean;
+  wordCount?: number;
   isFree?: boolean;
   price?: number;
 }
@@ -38,6 +39,7 @@ export interface SagaEbook {
   isEbook: boolean;
   badge: string;
   totalEpisodes: number;
+  totalWordCount?: number;
   views: number;
   episodes: StoryEpisode[];
 }
@@ -52,7 +54,7 @@ export const sakodoEpisodes: StoryEpisode[] = [
 
 export const sakodoSagaData: SagaEbook = {
   ...sakodoIndex,
-  badge: "EBOOK 5 ÉPISODES",
+  badge: "EBOOK 5 x 3000 mots",
   episodes: sakodoEpisodes,
 };
 

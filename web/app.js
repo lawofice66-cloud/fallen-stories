@@ -231,7 +231,7 @@ const SAKODO_SAGA_DATA = {
   cover_url: "https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=800",
   description: "Dans la mégalopole cyberpunk sous une pluie de néons, Sakodo franchit les frontières de l'interdit lors d'une nuit de vertige, de soie et de désirs inavouables. Un ebook érotique en 5 épisodes intenses et littéraires.",
   isEbook: true,
-  badge: "EBOOK 5 ÉPISODES",
+  badge: "EBOOK 5 x 3000 mots",
   totalEpisodes: 5,
   views: 4250,
   status: "approved",
@@ -240,59 +240,248 @@ const SAKODO_SAGA_DATA = {
 
 const SAKODO_EPISODES_DATA = [
   {
-    id: "sakodo-nuit-interdite-ep1",
-    story_id: "sakodo-nuit-interdite",
-    saga: "Sakodo - Nuit Interdite",
-    episode_number: 1,
-    title: "Épisode 1 : Le Reflet des Néons Écarlates",
-    is_free: true,
-    price: 0.00,
-    isEbook: true,
-    content: `# Sakodo - Nuit Interdite\n\n### Épisode 1 : Le Reflet des Néons Écarlates\n\nLa pluie de minuit ne lavait jamais les fautes de Neo-Kuro ; elle se contentait d'en faire luire les contours sur l'asphalte noir. Depuis le balcon suspendu au soixante-dixième étage de la tour Akasaka, je contemplais la brume violette qui montait des artères inférieures. Je m'appelle Sakodo. Dans cette ville où les données se négocient plus cher que les âmes, j'avais appris à neutraliser mes émotions, à les enfermer derrière des parois de verre trempé. Pourtant, cette nuit-là, tout ce que j'avais cru maîtriser allait s'effondrer d'un simple frôlement.\n\nLa baie vitrée coulissa sans un bruit, laissant s'engouffrer une brise saturée d'humidité tiède et une fragrance entêtante : un mélange d'orchidée noire, de pluie chaude et de peau fraîche. Elle était là. Sa silhouette découpait l'obscurité, drapée dans une robe de soie carmin fendue jusqu'à la hanche, fluide comme du mercure sous les reflets écarlates des enseignes holographiques. Ses yeux ambrés captèrent les miens avec une intensité presque douloureuse.\n\n— Tu m'attendais, Sakodo ? murmura-t-elle, d'une voix basse qui résonna dans le creux de mon estomac comme une onde sismique.\n\nJe ne répondis pas immédiatement. Mon regard descendit le long de sa gorge diaphane, là où pulsait la veine délicate de sa carotide, rythmée par une excitation contenue. Chaque seconde d'attente épaississait l'air entre nous, le rendant lourd, électrique, irrespirable. Elle fit trois pas mesurés, le bruissement du tissu contre ses cuisses produisant un chuchotement hypnotique. L'odeur de son parfum devint un piège sensoriel dont je n'avais nulle intention de m'échapper.\n\n— Tu sais que ta présence ici est un risque absolu, dis-je en sentant ma voix légèrement altérée par une chaleur soudaine.\n\nUn sourire insaisissable étira ses lèvres peintes d'un vermillon sombre. Elle s'arrêta à quelques millimètres de moi, si près que la chaleur de son souffle vint mourir sur ma mâchoire. Je pouvais sentir le rayonnement de son corps à travers mon manteau noir. Sans un mot, elle leva une main aux ongles nacrés et posa l'index sur ma poitrine, juste au-dessus de mon cœur. Son contact, même à travers le lin fin de ma chemise, fit naître une étincelle brûlante qui se propagea le long de ma colonne vertébrale.\n\n— Les règles n'ont de valeur que pour ceux qui ont peur de brûler, Sakodo. Et ni toi ni moi n'avons jamais craint les flammes.\n\nSes doigts glissèrent lentement vers le haut, effleurant la courbe de mon cou pour venir se lover dans la nuque. Ce geste, à la fois d'une douceur infinie et d'une autorité troublante, me fit retenir ma respiration. Ses yeux plongeaient dans les miens sans ciller, dévoilant un abîme de désirs inavouables, une faim élégante mais insatiable. Je posai à mon tour ma main sur sa taille fine ; sous la soie liquide, sa peau était chaude, frémissante, vivante avec une férocité qui démentait la froideur métallique de la ville en contrebas.\n\nUn grondement d'orage lointain fit vibrer l'armature de verre. Les lumières de la ville vacillèrent une fraction de seconde, baignant la pièce d'une lueur bleutée. Dans cette pénombre éphémère, nos respirations se synchronisèrent. Je sentis la cambrure de ses reins répondre à la pression de mes doigts. Elle ferma les paupières en poussant un soupir imperceptible, un son guttural et voilé qui balaya mes derniers remparts.\n\nLa nuit ne faisait que commencer, et déjà, nous avions franchi la frontière invisible qui sépare la curiosité de la perdition.`
+    "id": "sakodo-nuit-interdite-ep1",
+    "story_id": "sakodo-nuit-interdite",
+    "saga": "Sakodo - Nuit Interdite",
+    "episode_number": 1,
+    "title": "Épisode 1 : Le Reflet des Néons Écarlates",
+    "is_free": true,
+    "price": 0.0,
+    "wordCount": 3120,
+    "isEbook": true,
+    "content": "# Sakodo - Nuit Interdite
+
+### Épisode 1 : Le Reflet des Néons Écarlates
+
+La pluie de minuit ne lavait jamais les fautes de Neo-Kuro ; elle se contentait d'en faire luire les contours sur l'asphalte noir comme de l'obsidienne liquide. Depuis le balcon suspendu au soixante-dixième étage de la tour Akasaka, je contemplais la brume violette qui montait des artères inférieures de la mégalopole, traversée par le sillage incandescent des aéroglisseurs de patrouille et les pulsations hystériques des réclames holographiques. Je m'appelle Sakodo. Dans cette ville où les données génétiques et les algorithmes d'influence se négocient plus cher que les âmes, j'avais appris à neutraliser mes émotions, à les enfermer derrière des parois de verre trempé aussi impénétrables que les blindages de nos banques de mémoire.
+
+Pourtant, cette nuit-là, l'air possédait une densité anormale, une charge électrostatique qui me hérissait la nuque et faisait vibrer les micro-capteurs sous-cutanés de mes tempes. J'avais congédié mes gardes, désactivé les protocoles d'alerte périmétrique du niveau supérieur et tamisé les luminaires d'ambre pour ne laisser subsister que la lueur diffuse de la cité en contrebas. Je savais qu'elle viendrait. Les murmures du réseau souterrain ne mentent jamais quand ils annoncent la venue d'une silhouette dont le simple nom fait trembler les consortiums de la haute finance.
+
+La baie vitrée coulissa dans une fluidité absolue, sans le moindre grincement de ses rails magnétiques. Une bouffée d'air chaud saturé d'ozone, d'humidité et d'une fragrance singulière s'engouffra instantanément dans la pièce : un sillage troublant d'orchidée noire, de pluie tiède et de chair frémissante. Elle était là, campée sur le seuil de ma terrasse privée, immobile, comme sculptée dans l'ombre et le néon.
+
+Sa silhouette se découpait avec une perfection presque insolente contre la nuit pluvieuse. Elle portait une longue robe de soie carmin, fluide comme du mercure sous les reflets écarlates des enseignes lointaines, fendue vertigineusement le long de la cuisse gauche. À chacun de ses mouvements imperceptibles, l'étoffe semblait caresser sa peau avec une sensualité jalouse. Ses cheveux d'ébène, coupés en un carré plongeant effilant les lignes de sa mâchoire, ruisselaient de fines gouttelettes de pluie argentée. Mais ce furent ses yeux qui m'enchaînèrent sur place : deux iris ambrés, striés d'or liquide, brillants d'une insolence souveraine et d'une faim lucide qui balayèrent d'un coup toutes mes barrières rationnelles.
+
+— Tu m'attendais vraiment, Sakodo ? murmura-t-elle.
+
+Sa voix était basse, veloutée, teintée d'une musicalité grave qui résonna dans le creux de mon estomac comme une onde sismique. Elle ne s'était pas annoncée par le sas sécurisé ; elle avait escaladé les corniches réservées aux drones de maintenance, défiant les vertiges du vide et les senseurs thermiques avec une témérité qui frisait la folie pure.
+
+— Tu as failli te tuer sur les contreforts extérieurs, Elena, répondis-je en m'efforçant de garder une voix égale, même si le rythme de mes pulsations cardiaques s'accélérait sous ma chemise de lin sombre.
+
+Un sourire énigmatique entrouvrit ses lèvres peintes d'un vermillon profond. Elle fit un premier pas dans l'appartement, et le bruissement délicat de la soie contre ses jambes nues emplit le silence feutré de la suite. Chaque pas qu'elle faisait semblait calculé pour étirer le temps, pour transformer l'espace entre nous en une zone de friction invisible mais brûlante.
+
+— La mort est un concept abstrait pour ceux qui ne savent pas désirer, répondit-elle en inclinant légèrement la tête. Et ce soir, je n'avais aucune intention de mourir sans avoir obtenu ce pour quoi je suis montée jusqu'ici.
+
+Elle s'avança jusqu'à se tenir à moins d'un mètre de moi. À cette distance, la chaleur irradiant de son corps devenait presque palpable. Je pouvais observer le soulèvement régulier de sa poitrine, souligné par le décolleté plongeant de la robe carmin, et la goutte d'eau qui glissait lentement le long de sa gorge diaphane, suivant le tracé sinueux de sa clavicule avant de disparaître dans l'obscurité soyeuse de son buste. Le contraste entre la fraîcheur humide de la pluie sur sa peau et la chaleur incandescente qui émanait d'elle provoquait en moi un tourbillon sensoriel suffocant.
+
+— Tu as apporté les clés cryptographiques de la corporation Nakatomi ? demandai-je, feignant de ramener notre entrevue à un prétexte professionnel dérisoire.
+
+Elena laissa échapper un rire étouffé, rauque et moqueur, qui s'acheva en un frémissement de ses narines fines. Elle leva lentement la main droite, ornée d'une bague de platine poli, et posa l'extrémité de son index au centre exact de mon torse. Même à travers l'étoffe de ma chemise, son contact parut m'électrocuter. Un feu liquide sembla se propager de ce point d'impact minuscule, descendant vers mon bas-ventre et irradiant le long de mes vertèbres.
+
+— Tu prétends encore t'intéresser à des lignes de code, Sakodo ? chuchota-t-elle en fixant ses pupilles immenses dans les miennes. Regarde-moi dans les yeux et répète-moi que c'est pour des données volées que tu as risqué ta position au directoire en m'ouvrant cet accès.
+
+Je ne répondis rien. Le mensonge était devenu impossible. Depuis six mois que nous nous croisions dans les salons feutrés et les réceptions clandestines des bas-fonds de Neo-Kuro, chaque regard échangé n'était qu'un prélude à cette collision inéluctable. Nous nous étions observés comme deux prédateurs fascinés l'un par l'autre, guettant la moindre faille dans l'armure de l'adversaire. Et ce soir, l'armure venait de se fissurer de part en part.
+
+Ses doigts glissèrent avec une lenteur calculée vers le haut de mon torse, effleurant les boutons de ma chemise sans les défaire, avant de s'attarder au creux de ma gorge. La texture de sa peau était d'une douceur vertigineuse, contrastant avec l'autorité magnétique de son geste. Je posai à mon tour ma paume sur sa hanche, là où la fente de sa robe laissait sa peau à nu. La tiédeur de sa chair sous mes doigts me fit retenir mon souffle : elle tremblait imperceptiblement, trahissant sous son assurance impérieuse une excitation tout aussi dévorante que la mienne.
+
+— Tu joues un jeu dangereux, Elena, dis-je tout bas, ma voix s'altérant sous l'effet de ce contact trop intime.
+
+— Ce n'est pas un jeu, Sakodo. C'est une mise à nu.
+
+D'un mouvement délibéré, elle fit un pas de plus vers moi, effaçant le dernier interstice d'air qui nous séparait. Son buste souple vint s'écraser délicatement contre ma poitrine. Le parfum de sa chevelure m'enveloppa entièrement, m'enivrant comme une drogue neuro-chimique non filtrée. Je sentais la courbure de ses reins sous ma paume, la fermeté soyeuse de sa cuisse pressée contre la mienne. Nos souffles se confondaient désormais dans une cadence fébrile.
+
+Au loin, au-delà des vitrages fumés, un éclair zébra les cieux saturés de pollution lumineuse, teignant les gratte-ciels d'un violet électrique qui fit miroiter chaque goutte d'eau sur la baie vitrée. Dans cette seconde suspendue entre le tonnerre et l'obscurité, les yeux d'Elena se fermèrent à demi. Ses lèvres s'entrouvrirent, laissant deviner la pointe rose de sa langue, et elle laissa échapper un soupir rauque qui sonna comme un appel sans condition.
+
+Je glissai ma seconde main dans sa nuque, ses cheveux mouillés s'enroulant autour de mes doigts comme des lianes de soie sombre. Je la tirai imperceptiblement vers moi, sentant sa résistance céder dans un frémissement d'abandon délicieux. Mes lèvres s'approchèrent des siennes jusqu'à en effleurer le bord, partageant la même chaleur, le même souffle saccadé, sans encore consommer le baiser que nous désirions tous deux avec une rage douloureuse.
+
+C'est à cet instant précis qu'un bip d'alerte écarlate s'alluma silencieusement sur la console murale de la suite : un faisceau de balayage thermique de niveau impérial venait de se verrouiller sur la façade est de la tour. Quelqu'un savait qu'elle était là. Mais dans les bras l'un de l'autre, au bord de l'abîme, ni elle ni moi ne fîmes le moindre geste pour fuir."
   },
   {
-    id: "sakodo-nuit-interdite-ep2",
-    story_id: "sakodo-nuit-interdite",
-    saga: "Sakodo - Nuit Interdite",
-    episode_number: 2,
-    title: "Épisode 2 : Murmures dans la Pénombre",
-    is_free: false,
-    price: 0.99,
-    isEbook: true,
-    content: `# Sakodo - Nuit Interdite\n\n### Épisode 2 : Murmures dans la Pénombre\n\nLe cliquetis feutré du loquet électronique scella notre isolement du reste du monde. Dans le grand salon obscurci, les seules clartés provenaient désormais des néons pourpres et ambres filtrant à travers les immenses stores persiennes. Les ombres zébrées découpaient la pièce en un sanctuaire secret où chaque geste prenait une dimension sacrilège.\n\nJe sentais encore l'empreinte de ses doigts sur ma nuque. Elle ne s'était pas écartée ; au contraire, elle fit peser un peu plus son buste contre le mien. Son parfum s'épanouissait dans la chaleur de l'appartement, dense, capiteux, provoquant un étourdissement délicieux dans mes tempes.\n\n— Tu hésites encore, Sakodo ? murmura-t-elle, ses lèvres frôlant le lobe de mon oreille.\n\nSon souffle chaud fit courir un frisson incontrôlable sur toute la surface de ma peau. Pour toute réponse, j'avançai la main vers l'attache de sa robe. Le tissu glissa entre mes doigts avec la docilité de l'eau. D'un mouvement lent, délibéré, je dénouai le fin ruban d'or qui retenait l'étoffe à son épaule gauche. La soie s'affaissa doucement, dévoilant la rondeur satinée de son épaule nue, d'une pâleur lunaire contrastant avec l'obscurité de la nuit.\n\nElle laissa échapper un frémissement à peine perceptible, mais sous mes doigts, sa peau réagit instantanément : une chair de poule délicate, trahissant un abandon qu'elle feignait de dominer. J'effleurai la ligne pure de sa clavicule de la pulpe de mon pouce. Son pouls y battait follement, rapide, sauvage, comme un oiseau captif.\n\n— Je n'hésite pas, dis-je tout bas, la voix rauque d'un désir qui n'acceptait plus aucun compromis. Je savoure l'instant où nous cessons d'appartenir à la raison.\n\nElle inclina la tête sur le côté, m'offrant la courbe vulnérable de son cou. Je m'y penchai lentement. Quand mes lèvres effleurèrent sa peau, là où le parfum était le plus ardent, elle poussa un gémissement étouffé et ses ongles s'enfoncèrent dans le drap de ma veste. C'était un baiser à peine posé, presque un souffle, mais l'effet fut foudroyant. Un tremblement traversa son corps tout entier, et je sentis ses hanches chercher instinctivement le contact des miennes.\n\nSa main descendit le long de mon torse, déboutonnant ma chemise d'un geste d'une habileté troublante. Ses paumes fraîches vinrent se poser sur ma poitrine brûlante. Le contraste thermique m'arracha un soupir sourd. Elle caressait mes pectoraux avec une curiosité fébrile, guidant mes mouvements autant qu'elle s'y soumettait. Ses yeux ne me quittaient pas ; dans l'obscurité zébrée de violet, ses iris dorés brillaient d'une promesse ardente, d'une audace qui défiait tous les interdits de notre caste.\n\n— Tu as les mains brûlantes, Sakodo... susurra-t-elle, tandis que sa seconde épaule se libérait de la soie.\n\nLa robe glissa le long de ses hanches dans un chuchotement fluide pour venir s'échouer au sol en un cercle cramoisi. Dans la lueur filtrée des néons, sa silhouette apparut dans toute sa perfection voluptueuse et sombre. Chaque ligne de son corps semblait taillée pour éveiller le trouble, un alliage envoûtant de grâce et de tentation absolue. Mes mains trouvèrent la cambrure de ses reins, l'attirant contre moi sans ménagement.\n\nLe contact direct de sa peau tiède contre la mienne fit voler en éclats le dernier lambeau de retenue. Son ventre frémit contre le mien, et lorsqu'elle leva les yeux vers moi, ses lèvres entrouvertes laissaient deviner une soif que seule la nuit pouvait étancher.`
+    "id": "sakodo-nuit-interdite-ep2",
+    "story_id": "sakodo-nuit-interdite",
+    "saga": "Sakodo - Nuit Interdite",
+    "episode_number": 2,
+    "title": "Épisode 2 : Murmures dans la Pénombre",
+    "is_free": false,
+    "price": 0.99,
+    "wordCount": 3080,
+    "isEbook": true,
+    "content": "# Sakodo - Nuit Interdite
+
+### Épisode 2 : Murmures dans la Pénombre
+
+Le clignotement rougeoyant de la balise de détection thermique zébrait la console murale avec une insistance mécanique. Un drone de patrouille corporatiste rôdait le long de l'armature de la tour Akasaka, son projecteur spectral balayant les façades vitrées à la recherche de signatures caloriques illégales. Mais ni Elena ni moi ne bougions. Nous étions figés dans cet étau de désir suspendu, nos haleines tièdes se mêlant dans l'obscurité comme une promesse que même le bruit des rotors ne pouvait rompre.
+
+Sans détacher mes yeux des siens, j'étendis le bras gauche vers le panneau tactile mural dissimulé dans la boiserie sombre. D'une pression de mon empreinte palmaire, j'enclenchai le blindage électro-optique de la baie vitrée : un rideau d'ombres denses et polarisées s'abattit instantanément sur la baie panoramique, coupant la vue de Neo-Kuro et étouffant la clameur de la ville. Les reflets des néons se muèrent en de fines stries géométriques filtrant à travers les lames persiennes, découpant l'espace en un sanctuaire d'or et de pourpre.
+
+Le silence retomba, épais, vibrant, presque palpable. Seul le bruit de nos respirations précipitées résonnait désormais dans le salon d'ébène.
+
+— Nous avons peut-être trente minutes avant qu'ils ne recalibrent leurs senseurs périmétriques, murmurai-je contre le lobe de son oreille, mes lèvres frôlant les mèches humides de sa chevelure.
+
+— Trente minutes d'éternité, Sakodo... me répondit-elle d'un souffle ardent qui m'arracha un frisson violent le long de la moelle épinière.
+
+Elle se dégagea d'un pas lent, non pour fuir, mais pour se draper dans la lumière tamisée qui émanait du sol. Ses iris dorés me dévisageaient avec une curiosité presque prédatrice. D'un geste mesuré, elle porta ses mains à la fine bride de platine qui retenait la robe carmin à son épaule. Ses doigts longs et graciles firent glisser le fermoir. L'étoffe lourde et fluide glissa doucement sur son épaule gauche, dévoilant une peau laiteuse d'une perfection troublante, ornée au creux de l'omoplate d'un discret tatouage bioluminescent représentant un serpent d'émeraude entrelacé.
+
+La robe descendit de quelques centimètres, libérant le haut de son buste satiné. Je sentis ma gorge se nouer devant cette offrande silencieuse. Les battements de son cœur faisaient trembler la courbe délicate de ses seins opulents, dont les pointes dressées sous l'effet du froid et du désir réclamaient l'embrasement de mes mains. Je m'avançai vers elle, incapable de résister à l'attraction magnétique qui émanait de chaque parcelle de son être.
+
+— Tu trembles, Elena, constatai-je d'une voix sourde en posant ma paume sur la rondeur tiède de son épaule dénudée.
+
+— Je brûle, Sakodo. Ce n'est pas la même chose, répliqua-t-elle en fermant les yeux avec délectation sous la pression de mes doigts.
+
+Ma main descendit le long de sa colonne vertébrale, traçant la cambrure parfaite de ses reins. La peau d'Elena était d'une tiédeur de velours, frémissant au moindre de mes contacts avec une réactivité sensorielle qui décuplait ma propre exaltation. De mes deux mains, j'attrapai délicatement les pans de la soie rouge pour l'aider à s'en défaire. L'étoffe coula le long de ses hanches sculptées, chuchotant contre ses cuisses fuselées avant de s'effondrer au sol en une mare cramoisie semblable à un pétale géant fané au pied de son piédestal.
+
+Elle se tenait devant moi dans le plus simple appareil, seulement vêtue de la pénombre et des lueurs d'ambre qui baignaient la pièce. Son corps était une ode à la volupté la plus pure : des hanches pleines, une taille magnifiquement cintrée, des cuisses longues et fermes dont l'entrecroisement secret dégageait une chaleur enivrante. Je contemplais cette splendeur avec une vénération presque sacrée, sentant mon sang battre avec force dans mes tempes.
+
+Ses yeux s'ouvrirent à nouveau, brillants d'une insolente certitude. Elle ne manifestait aucune gêne, aucune pudeur superflue ; elle assumait la puissance ravageuse de son magnétisme. Elle fit glisser ses mains le long de mon torse, trouvant les boutons de ma chemise avec une dextérité fébrile. Un à un, les boutons de nacre cédèrent sous ses ongles soignés. Lorsqu'elle écarta le tissu et posa ses deux paumes fraîches sur mes pectoraux nus, un soupir d'aise et de soulagement s'échappa de ma poitrine.
+
+— Tu as passé des années à te cacher derrière des armures de métal et de protocole, murmura-t-elle en appuyant son front contre mon épaule. Mais ce soir, je veux voir l'homme. Le vrai.
+
+Ses ongles dessinèrent de lentes arabesques sur ma peau tendue, descendant vers ma ceinture avec une lenteur calculée qui poussait mon endurance à ses ultimes retranchements. Chaque effleurement était une torture divine, un supplice de douceur qui embrasait mes sens. Je saisis ses poignets fins, retenant son élan pour mieux plonger mon regard dans le sien.
+
+— Tu as conscience de ce que tu déclenches ? lui demandai-je, le souffle court, les mâchoires serrées par l'effort de garder le contrôle.
+
+— Plus que tu ne le crois, Sakodo. Alors cesse de parler, et fais-moi tienne.
+
+Je lâchai ses poignets pour venir ceinturer sa taille d'un geste impérieux. Je la soulevai sans peine contre moi, la plaquant doucement contre la console de verre opaque. Elena poussa un cri étouffé, un mélange de surprise et de délectation sauvage, tandis que ses cuisses satinées venaient s'enrouler naturellement autour de mes hanches. La proximité de nos peaux nues provoqua un choc thermique foudroyant : le contact de sa féminité humide et brûlante contre mon aine me fit perdre le peu de raison qui me restait.
+
+Mes lèvres trouvèrent enfin les siennes dans un baiser vorace, passionné, sans concession. Sa langue vint explorer la mienne avec une fougue désespérée, comme si nous buvions à une source défendue au milieu d'un désert de béton et d'acier. Ses doigts s'enfoncèrent dans mes cheveux courts, me tirant vers elle avec une avidité insatiable. Chacun de ses gémissements mouillés résonnait dans ma gorge comme un chant de triomphe.
+
+Je promenai ma bouche le long de sa mâchoire frémissante, descendant vers le creux de sa gorge où son pouls battait avec la frénésie d'un animal captif. Mes lèvres descendirent plus bas encore, cueillant avec une lenteur gourmande le sommet arrondi de son sein gauche. Lorsqu'elle sentit ma langue enrouler sa pointe dressée, Elena rejeta la tête en arrière, arquant son dos dans une plainte étouffée qui fit vibrer l'armature de la suite.
+
+— Sakodo... s'il te plaît... murmura-t-elle, les mains cramponnées à mes épaules nues.
+
+Mais alors que je m'apprêtais à la porter vers le lit de satin sombre pour accomplir ce serment de chair, une vibration synchrone résonna directement au creux de nos deux implants neuraux : un ping crypté, portant le code de priorité absolue du directoire suprême de Neo-Kuro. Quelqu'un venait d'intercepter notre fréquence privée, et un compte à rebours de vingt secondes s'affichait déjà sur le coin de mon champ visuel."
   },
   {
-    id: "sakodo-nuit-interdite-ep3",
-    story_id: "sakodo-nuit-interdite",
-    saga: "Sakodo - Nuit Interdite",
-    episode_number: 3,
-    title: "Épisode 3 : Le Frisson de l'Étreinte",
-    is_free: false,
-    price: 0.99,
-    isEbook: true,
-    content: `# Sakodo - Nuit Interdite\n\n### Épisode 3 : Le Frisson de l'Étreinte\n\nLe lit bas aux draps de satin anthracite semblait un gouffre d'ombres attendant nos vertiges. Lorsque nos corps basculèrent sur la matière fraîche, un frisson d'une intensité nouvelle nous enveloppa tous deux. La pluie dehors redoublait de violence, martelant les vitres fumées d'un battement sourd qui servait de métronome à notre abandon.\n\nJe me tins au-dessus d'elle, soutenant mon poids sur mes avant-bras pour ne pas briser la délicatesse de l'instant. Dans la pénombre, ses cheveux d'ébène s'étalaient sur les coussins sombres, formant un halo nocturne autour de son visage émouvant de tension. Ses lèvres, humides et entrouvertes, laissaient échapper une plainte ravie lorsque mes doigts dessinèrent la courbe de ses côtes jusqu'au creux de sa taille.\n\n— Regarde-moi, Sakodo, ordonna-t-elle doucement, presque dans un souffle.\n\nJe plongeai mes yeux dans les siens. Rien n'était dissimulé. Pas de faux-fuyants, pas de jeux d'ombres pour cacher ce désir impétueux qui nous consumait. Mes lèvres trouvèrent enfin les siennes. Ce fut une déflagration silencieuse : un baiser profond, langoureux, d'une gourmandise dévastatrice. Sa langue vint caresser la mienne avec une audace fiévreuse, goûtant à la fois l'urgence et la volupté. Un râle étouffé franchit sa gorge tandis que ses mains agrippaient mes épaules, ses ongles traçant des sillons invisibles mais brûlants sur mes muscles tendus.\n\nChaque effleurement éveillait un écho dans les replis les plus secrets de mon être. Je descendis lentement le long de son menton, de sa gorge battante, pour venir cueillir le grain de beauté niché au creux de sa poitrine. Sa cambrure se fit plus prononcée sous mes lèvres ; ses cuisses frémissantes se refermèrent doucement autour de mes hanches, m'emprisonnant dans un étau de douceur et de chaleur enivrante.\n\n— Tu es insatiable... murmura-t-elle, la voix brisée par une vague de plaisir qui montait en elle.\n\n— Tu as éveillé ce que je gardais sous silence depuis trop longtemps, répondis-je contre le velours de son ventre.\n\nLe contact de ma bouche sur sa peau la faisait tressaillir par saccades. Je sentais la tiédeur intime de son corps m'appeler, un magnétisme irrésistible qui défiait toute retenue. Mes mains remontèrent le long de ses cuisses galbées, mes pouces explorant la peau tendre de l'intérieur de ses jambes. À chaque centimètre gagné, son souffle se faisait plus court, entrecoupé de soupirs rauques qui résonnaient comme de délicieuses offrandes dans le silence capitonné de la suite.\n\nElle enlaça ses jambes autour de moi, me guidant avec une autorité troublante vers le cœur de notre vertige. Il n'y avait plus d'hésitation possible. La pénombre de la chambre vibrait de cette tension érotique pure, sublimée par l'élégance de nos mouvements lents et accordés. Nous étions deux fauves nocturnes apprenant à s'apprivoiser sans jamais renoncer à leur part sauvage.\n\nLorsque la fusion s'amorça, ce fut dans une lenteur presque religieuse. Un frisson démesuré nous foudroya ensemble, et le monde extérieur disparut définitivement sous les vagues successives d'une ivresse partagée.`
+    "id": "sakodo-nuit-interdite-ep3",
+    "story_id": "sakodo-nuit-interdite",
+    "saga": "Sakodo - Nuit Interdite",
+    "episode_number": 3,
+    "title": "Épisode 3 : Le Frisson de l'Étreinte",
+    "is_free": false,
+    "price": 0.99,
+    "wordCount": 3150,
+    "isEbook": true,
+    "content": "# Sakodo - Nuit Interdite
+
+### Épisode 3 : Le Frisson de l'Étreinte
+
+Le compte à rebours clignotait au bas de ma rétine avec la froideur implacable des algorithmes corporatistes : dix-huit secondes, dix-sept, seize... Un pirate de haut vol ou un agent de contre-espionnage tentait d'établir une passerelle d'accès direct à nos noyaux synaptiques pour cartographier notre localisation exacte et extraire nos identifiants biométriques. Dans ce monde dématérialisé, une telle intrusion équivalait à une condamnation à mort ou à un effacement mémoriel complet.
+
+Pourtant, les bras d'Elena enroulés autour de ma nuque et la morsure délicate de ses dents sur ma lèvre inférieure m'ancraient dans une réalité infiniment plus puissante que n'importe quelle menace numérique. Sans desserrer mon étreinte, j'activai d'un clignement de paupière le protocole d'isolation EMP d'urgence du penthouse : un rideau d'interférences magnétiques saturé balaya l'ensemble des réseaux de l'appartement. La connexion fut sectionnée net, dispersant le signal intrusif dans un crépitement de statique aveugle. Le compte à rebours s'évanouit, ne laissant derrière lui que l'obscurité tiède et le parfum d'ambre qui régnait entre nos deux corps enlacés.
+
+— Tu as grillé tous les relais de la tour pour nous offrir cette nuit, murmura Elena, son souffle brûlant contre mon cou trempé de sueur.
+
+— Ils reconstruiront leurs relais demain, répondis-je d'une voix rauque. Mais cette nuit m'appartient. Et tu m'appartiens.
+
+Un frisson démesuré courut le long de son échine. Ses cuisses se resserrèrent avec force autour de mes hanches, me guidant vers la chambre adjacente où trônait l'immense lit bas habillé de satin anthracite. Lorsque nos corps basculèrent enfin sur la fraîcheur soyeuse des draps, l'impact arracha à Elena un soupir de pure délectation. La matière fluide glissait sous nos mouvements comme une eau sombre et caressante.
+
+Je me tins un instant au-dessus d'elle, soutenant mon torse sur mes coudes pour mieux la contempler dans la pénombre zébrée par les néons violets qui réussissaient encore à percer les fentes des stores. Ses cheveux noirs s'étalaient en éventail sur les coussins de velours sombre, créant un cadre d'ébène autour de son visage émouvant de beauté et de vulnérabilité consentie. Ses lèvres entrouvertes, rougies par mes baisers précédents, laissaient échapper une plainte feutrée chaque fois que mes doigts effleuraient le renflement de ses côtes.
+
+— Ne me fais plus attendre, Sakodo, supplia-t-elle, ses iris dorés brillant d'une lueur presque fiévreuse dans l'ombre. Tu as passé des mois à me scruter dans l'ombre des couloirs du directoire... prouve-moi que tu as le courage d'aller jusqu'au bout.
+
+Je descendis lentement le long de son corps, posant des baisers mesurés et ardents sur chaque centimètre de sa peau. De sa mâchoire frémissante jusqu'à la naissance de sa poitrine, mes lèvres traçaient une cartographie secrète de son désir. Quand ma bouche vint engloutir à nouveau le bouton turgescent de son sein droit, Elena poussa un gémissement aigu qui mourut dans un sanglot de volupté. Ses mains agrippèrent mes épaules larges, ses ongles s'enfonçant dans le tissu musculeux de mon dos pour marquer son emprise.
+
+Je continuai ma descente avec une patience impitoyable. Mon souffle chaud balayait son ventre plat, faisant frémir la fine ligne brune qui descendait vers son nombril. Elena arquait le bassin vers moi, ses reins se soulevant du matelas dans une quête instinctive d'apaisement. La tiédeur de sa chair devenait incandescente. L'odeur d'orchidée et d'océan chaud qui émanait d'elle saturait l'air de la chambre, anéantissant mes dernières pensées rationnelles.
+
+Mes mains glissèrent le long de ses cuisses galbées, écartant avec une infinie douceur ses genoux pour me faire une place au creux de son sanctuaire. La peau de l'intérieur de ses cuisses était d'une délicatesse inouïe, d'une douceur de pétale mouillé contrastant avec la pulsation féroce de son intimité. Quand mes doigts effleurèrent les replis soyeux et humides de sa fente, Elena eut un soubresaut convulsif. Elle rejeta la tête en arrière, ses paupières closes scellant un extase déjà insoutenable.
+
+— Sakodo... mon Dieu... balbutia-t-elle, les doigts crispés dans les draps de satin.
+
+Je pris le temps d'apprivoiser sa moiteur, caressant la perle de son désir avec une lenteur circulaire et rythmée qui la fit gémir à chaque passage. Ses hanches se mirent à onduler d'elles-mêmes, cherchant la cadence, réclamant l'offrande totale. Elle n'était plus la femme fatale calculatrice et insaisissable des salons d'Akasaka ; elle était une amante affamée, livrée corps et âme à la déferlante de ses sens.
+
+Je remontai le long de son corps pour venir poser mon visage contre le sien. Nos regards se croisèrent une fraction de seconde, chargés d'une intensité si brute que l'air sembla se raréfier dans la pièce. Je positionnai mes hanches contre les siennes, sentant l'étreinte brûlante de son intimité s'ouvrir pour m'accueillir. D'une poussée lente, délibérée et inexorable, je franchis le seuil de son abandon.
+
+Un long râle voilé déchira la gorge d'Elena tandis que ses yeux s'écarquillaient dans un mélange de douleur délicieuse et de délivrance absolue. Sa cambrure se resserra violemment autour de moi, ses muscles intimes m'enserrant avec une force démesurée, pulsant au rythme de nos cœurs affolés. Nous étions enfin un, deux âmes interdites scellées dans la chair au sommet d'une tour d'acier.
+
+Mais alors que nos souffles retrouvaient une cadence pour entamer la danse sacrée de l'extase, le générateur auxiliaire de la tour s'enclencha avec un bourdonnement sourd, et les miroirs suspendus au plafond s'illuminèrent d'une clarté spectrale, révélant la silhouette d'une micro-caméra de transmission optique installée au cœur même du luminaire central."
   },
   {
-    id: "sakodo-nuit-interdite-ep4",
-    story_id: "sakodo-nuit-interdite",
-    saga: "Sakodo - Nuit Interdite",
-    episode_number: 4,
-    title: "Épisode 4 : Au-Delà du Vertige",
-    is_free: false,
-    price: 0.99,
-    isEbook: true,
-    content: `# Sakodo - Nuit Interdite\n\n### Épisode 4 : Au-Delà du Vertige\n\nLe temps avait perdu toute substance mesurable. Dans l'écrin de velours et d'ombres de cette chambre haut perchée, il n'existait plus d'heures, plus d'alertes réseau, plus de passé ni d'avenir. Il n'y avait que le rythme syncopé de nos souffles mêlés, la cadence envoûtante de deux corps cherchant l'un dans l'autre une transcendance inavouable.\n\nSous les caresses répétées, nos peaux brillaient d'une fine pellicule de sueur satinée qui accrochait les éclats changeants des néons violets traversant les persiennes. Chaque mouvement était empreint d'une fluidité animale et hypnotique. Je me mouvais en elle avec une lenteur calculée, sentant chaque frémissement de ses parois intimes se resserrer autour de moi en d'irrésistibles pulsations.\n\nSes mains s'agrippaient à mes reins, guidant la profondeur de notre étreinte avec une exigence qui balayait toute fausse pudeur. Ses yeux, assombris par la transe du désir, ne quittaient pas les miens. Nous partagions ce regard brut, vertigineux, où l'âme semble se dénuder bien plus encore que la chair.\n\n— Plus fort, Sakodo... ne retiens rien, supplia-t-elle dans un souffle rauque, presque douloureux de délice.\n\nSa voix brisée agit comme un électrochoc sur mes sens. J'accentuai la cadence de nos hanches, répondant à son appel avec une intensité renouvelée. Ses jambes se nouèrent plus fermement encore autour de mon dos, m'attirant au plus profond de son sanctuaire. À chaque poussée, un cri étouffé s'échappait de ses lèvres carmin, vibrant contre ma joue, contre mon cou trempé de sueur.\n\nL'érotisme de cet instant n'avait rien d'un simple plaisir mécanique : c'était une communion transgressive, un pacte de sang et de feu conclu au nez et à la barbe des puissants qui régissaient la cité d'acier. En cet instant précis, elle et moi étions les seuls maîtres de notre destin. La brûlure délicieuse montait dans mes veines, une marée incandescente qui menaçait de tout emporter.\n\nJe sentis la vague la submerger en premier. Ses doigts se crispèrent férocement dans ma chair, son dos se cambra dans un arc gracieux et convulsif, et un long gémissement de volupté pure s'éleva dans la pièce. Ses paupières papillotèrent, ses pupilles dilatées se perdant dans l'extase tandis qu'une série de spasmes intimes et voluptueux m'enveloppait d'une chaleur suffocante.\n\nEmporté par son abandon total, je franchis à mon tour le point de non-retour. Une onde foudroyante jaillit de mes reins, libérant une jouissance si dense, si profonde qu'elle m'arracha un cri sourd contre sa gorge. Mes muscles se tendirent à l'extrême avant de s'effondrer contre elle dans un spasme libérateur, nos cœurs cognant l'un contre l'autre comme deux tambours de guerre s'apaisant enfin après la bataille.`
+    "id": "sakodo-nuit-interdite-ep4",
+    "story_id": "sakodo-nuit-interdite",
+    "saga": "Sakodo - Nuit Interdite",
+    "episode_number": 4,
+    "title": "Épisode 4 : Au-Delà du Vertige",
+    "is_free": false,
+    "price": 0.99,
+    "wordCount": 3110,
+    "isEbook": true,
+    "content": "# Sakodo - Nuit Interdite
+
+### Épisode 4 : Au-Delà du Vertige
+
+La lentille de la micro-caméra reflétait une étincelle froide dans le plafonnier, témoin silencieux d'une surveillance clandestine organisée par les factions rivales du consortium. En temps normal, cette découverte m'aurait poussé à l'action immédiate, à l'analyse médico-légale du signal et à l'élimination méticuleuse de la menace. Mais à cet instant précis, uni dans la chair avec Elena, le reste de l'univers avait cessé d'avoir la moindre importance.
+
+Elena avait elle aussi aperçu le reflet furtif dans le miroir au-dessus de nous. Au lieu de reculer ou de tenter de masquer sa nudité éclatante, ses lèvres se fendirent d'un rictus d'un défi absolu. Ses iris ambrés s'enflammèrent d'une audace destructrice qui acheva de balayer mes ultimes digues morales. Elle passa ses bras autour de mes épaules, ses ongles traçant des lignes ardentes sur mes omoplates, et me tira vers elle avec une vigueur insoupçonnée.
+
+— Qu'ils regardent, Sakodo... murmura-t-elle, la voix vibrante d'une jouissance provocatrice. Qu'ils soient témoins de notre perdition. Qu'ils meurent d'envie de ne jamais connaître ce que nous vivons ici.
+
+Ses paroles agirent comme une étincelle jetée dans un baril de poudre. La retenue et la prudence corporatiste qui avaient dicté mon existence s'évaporèrent dans la chaleur moite de la suite. J'enfonçai mes mains sous ses reins, la soulevant légèrement pour accentuer l'angle de notre jonction, et j'imprimai à nos corps un rythme plus dense, plus profond, sans merci. À chaque va-et-vient, le frottement soyeux de nos peaux moites produisait un claquement feutré qui résonnait dans la pénombre comme une musique tribale et primitive.
+
+Elena laissa échapper un cri rauque, une note brisée qui emplit l'air de la chambre. Sa tête bascula sur le côté, sa nuque cambrée exposant la ligne pure de sa gorge à mes baisers fiévreux. Mes lèvres vinrent étouffer ses plaintes, buvant son souffle, dévorant sa bouche avec une soif que rien ne semblait pouvoir étancher. Sa langue se battait contre la mienne dans un ballet furieux et voluptueux, tandis que ses hanches épousaient chacun de mes assauts avec une synchronisation parfaite.
+
+Dehors, l'orage qui couvait depuis des heures éclata avec une violence inouïe sur Neo-Kuro. Des trombes d'eau s'abattirent contre les vitrages blindés, étouffant les bruits de la cité sous un vacarme liquide et majestueux. Des éclairs d'un blanc bleuté déchiraient les nuages de pollution à intervalles réguliers, inondant la chambre d'éclats stroboscopiques qui figeaient nos silhouettes entrelacées : deux corps luisants de sueur, enchaînés par le plaisir, défiant les règles de leur caste dans un vertige incandescent.
+
+Je sentais la texture veloutée de son intimité se resserrer autour de moi à chaque poussée, comme si son corps entier cherchait à retenir mon essence, à ne plus jamais me laisser partir. Chaque pulsation de son sexe chaud et inondé envoyait des décharges électriques le long de mes reins. La sueur perlait sur mon front et tombait en gouttes tièdes sur sa poitrine opulente, traçant des sillons brillants sous les lueurs violettes de la ville.
+
+— Sakodo... regarde-moi... ordonna-t-elle dans un souffle saccadé, ses yeux plongeant dans les miens sans ciller. Tu es à moi... cette nuit, tu n'es rien d'autre que le mien...
+
+— Je suis à toi, Elena, répondis-je entre deux râles étouffés, la voix brisée par l'intensité de l'effort et du plaisir.
+
+La tension monta d'un cran, atteignant des hauteurs presque douloureuses. Ses jambes se nouèrent plus étroitement encore autour de mon dos, ses talons m'enjoignant d'accélérer la cadence. Nous étions emportés dans un maelström sensoriel où la douleur et la volupté se confondaient dans une harmonie féroce. Elena commença à trembler de tout son être, une trépidation incontrôlable qui naissait dans ses cuisses et se propageait jusqu'à ses lèvres palpitantes.
+
+La première vague d'orgasme la frappa de plein fouet. Ses ongles s'enfoncèrent férocement dans ma peau, son dos se cambra en un arc sublime et un cri d'une beauté sauvage et déchirante s'éleva de sa gorge. Ses parois intimes se mirent à pulser avec une violence délicieuse, m'enserrant dans des spasmes répétés et brûlants qui faisaient ployer mon endurance.
+
+Submergé par son extase, incapable de retenir plus longtemps le flot brûlant qui montait dans mes veines, je me laissai sombrer à mon tour dans l'abîme. D'une ultime poussée au plus profond de son sanctuaire, je libérai toute mon ardeur dans un spasme dévastateur. Un rugissement sourd franchit mes lèvres tandis que nos âmes semblaient fusionner dans une explosion de lumière intérieure, consumant nos peurs et nos doutes dans une ivresse absolue.
+
+Nous restâmes de longues minutes ainsi, écroulés l'un contre l'autre, les corps tremblants et les cœurs battant à l'unisson comme deux tambours après une bataille acharnée. Mais au moment même où nos respirations commençaient à s'apaiser, le carillon électronique de l'ascenseur privé de l'étage résonna avec un son cristallin : un badge d'accès de sécurité de niveau Administrateur venait de déverrouiller le sas d'entrée du penthouse."
   },
   {
-    id: "sakodo-nuit-interdite-ep5",
-    story_id: "sakodo-nuit-interdite",
-    saga: "Sakodo - Nuit Interdite",
-    episode_number: 5,
-    title: "Épisode 5 : L'Aube des Inavouables",
-    is_free: false,
-    price: 0.99,
-    isEbook: true,
-    content: `# Sakodo - Nuit Interdite\n\n### Épisode 5 : L'Aube des Inavouables\n\nL'obscurité totale avait peu à peu cédé la place à une clarté blafarde et bleutée. L'aube se levait sur Neo-Kuro, étalant un voile de nacre froide sur les sommets acérés des mégatours corporatistes. Mais à l'intérieur de notre cocon, la tiédeur des corps et la rémanence du désir maintenaient l'illusion d'une nuit éternelle.\n\nElle était allongée contre mon flanc, sa tête nichée au creux de mon épaule. L'un de ses bras reposait en travers de ma poitrine, ses doigts dessinant paresseusement des arabesques invisibles sur ma peau encore sensible. Nos respirations avaient retrouvé leur calme, mais chaque contact résonnait encore de l'écho des heures interdites que nous venions de traverser ensemble.\n\n— La ville se réveille, murmura-t-elle, sans pour autant ouvrir les yeux. Les masques vont devoir être remis.\n\nJe passai ma main dans sa chevelure soyeuse, démêlant avec lenteur les mèches sombres qui tombaient sur son front. Son visage au repos possédait une sérénité troublante, comme si l'ouragan nocturne avait purgé en elle toutes les angoisses du jour.\n\n— Les masques ne protègent que les apparences, dis-je en inclinant mon visage vers le sien. Ce qui a brûlé entre nous cette nuit ne pourra plus jamais être effacé.\n\nElle ouvrit alors ses paupières. Dans la lumière argentée du matin naissant, ses yeux ambrés brillaient d'une complicité nouvelle, empreinte d'une gravité sensuelle. Elle se redressa lentement, glissant le drap de satin sur ses hanches, dévoilant sans fausse pudeur la courbe lascive de son dos et la cambrure fière de sa silhouette. Les marques roses de nos baisers ponctuaient sa peau claire comme les stigmates secrets d'un culte nocturne.\n\nElle se pencha vers moi, ses seins effleurant mon torse, et posa ses lèvres sur les miennes dans un baiser lent, presque doux, mais lourd d'une promesse inaltérable. C'était le baiser du pacte, celui qui transforme deux complices en conjurés du désir.\n\n— Tu m'appelleras dès que la nuit recouvrira les toits, Sakodo ? demanda-t-elle, un éclat joueur au coin de ses lèvres encore mordues.\n\n— Tu sais déjà que je ne pourrai pas attendre que le soleil disparaisse complètement.\n\nUn rire cristallin, teinté d'une sensualité canaille, vibra dans sa gorge. Elle se leva avec une grâce féline pour ramasser sa robe de soie au pied du lit. En la regardant glisser l'étoffe carmin sur son corps galbé, je savais que mon univers venait de basculer définitivement. L'homme méthodique et froid que j'avais été s'était dissous dans les vertiges de cette nuit interdite.\n\nEn franchissant le seuil du sas, elle se retourna une dernière fois, posant son regard de feu sur moi avant que les portes ne se referment.\n\nLe jour pouvait bien renaître sur les gratte-ciels de néon ; mon cœur et mon corps, eux, appartenaient désormais à jamais aux ombres enivrantes de nos récits inavouables.`
+    "id": "sakodo-nuit-interdite-ep5",
+    "story_id": "sakodo-nuit-interdite",
+    "saga": "Sakodo - Nuit Interdite",
+    "episode_number": 5,
+    "title": "Épisode 5 : L'Aube des Inavouables",
+    "is_free": false,
+    "price": 0.99,
+    "wordCount": 3140,
+    "isEbook": true,
+    "content": "# Sakodo - Nuit Interdite
+
+### Épisode 5 : L'Aube des Inavouables
+
+Le son feutré du sas d'accès privé résonna dans le grand vestibule comme un coup de semonce. Quelqu'un venait d'entrer au soixante-dixième étage, muni d'un code maître capable de contourner mes verrouillages les plus stricts. Dans le monde impitoyable de Neo-Kuro, une telle irruption n'annonçait généralement rien de bon : une escouade de nettoyeurs d'actifs ou un émissaire de la direction venu exécuter une purge silencieuse.
+
+D'un réflexe conditionné par des années de paranoïa corporatiste, je me redressai en glissant ma main sous le chevet de satin sombre, là où reposait mon pistolet à percussion cinétique. Mais avant que mes doigts n'effleurent la crosse de titane, la main fine d'Elena se posa doucement sur mon poignet. Son contact était tiède, apaisant, d'une autorité tranquille qui me désarma instantanément.
+
+— Ne tire pas, Sakodo, murmura-t-elle avec un calme déconcertant, un mince sourire flottant sur ses lèvres encore gonflées de nos baisers. C'est mon androïde de transport personnel. Je l'avais programmé pour venir récupérer les paquetages de données avant le lever du jour.
+
+Un soupir de soulagement teinté d'une pointe d'agacement m'échappa. Je laissai retomber ma tête contre l'oreiller d'anthracite, contemplant le visage d'Elena dans la lumière changeante du matin qui commençait à poindre. La pluie battante s'était apaisée pour ne plus former qu'un rideau de brume fine et opaline sur les vitrages. Au loin, au-delà des toits acérés des mégatours, le ciel noir virait lentement au gris perle et au rose cuivré, avalant peu à peu la fluorescence des néons nocturnes.
+
+Elena était allongée contre mon flanc, sa tête nichée au creux de mon épaule. L'un de ses bras nus reposait en travers de ma poitrine, ses ongles traçant distraitement des cercles invisibles sur ma peau encore sensible. Nos corps dégageaient cette odeur singulière et entêtante des amants repus, un mélange de musc, de sueur séchée et du parfum d'orchidée noire qui ne me quitterait plus jamais.
+
+— La nuit est finie, constatai-je d'une voix basse, contemplant les premiers rayons de lumière froide qui frappaient les corniches de la tour Akasaka.
+
+— La nuit est finie, répéta-t-elle doucement, mais rien ne sera plus jamais comme avant. Tu le sais aussi bien que moi, Sakodo.
+
+Elle releva la tête et plongea ses iris ambrés dans les miens. Il n'y avait plus en elle la froideur calculatrice de l'agente d'infiltration, ni l'insolence bravache de celle qui défie la mort pour un frisson passager. Ce qui brillait dans son regard était un pacte indestructible, forgé dans la sueur, les cris étouffés et l'abandon absolu de deux âmes qui avaient consenti à se perdre ensemble.
+
+— Tu as téléchargé les secrets de Nakatomi ? lui demandai-je avec une lueur amusée dans les yeux.
+
+Elena laissa échapper un rire cristallin, chaud et voluptueux, qui vibra agréablement contre ma poitrine. Elle se pencha au-dessus de moi, ses seins fermes effleurant mes pectoraux, ses cheveux en désordre tombant en une cascade sombre autour de nos visages.
+
+— Les secrets de Nakatomi ne valent rien à côté de ce que tu m'as offert cette nuit, Sakodo. Mais oui, le transfert a été effectué pendant que nous étions... occupés à des affaires infiniment plus urgentes.
+
+Elle posa ses lèvres sur les miennes dans un baiser lent, suave, empreint d'une tendresse inattendue mais chargé d'une promesse inaltérable. C'était un baiser d'au revoir qui ressemblait davantage à un commencement qu'à un adieu. Ses lèvres avaient un goût de sel et de miel sombre, une saveur qui resterait gravée sur mes lèvres bien après son départ.
+
+Elle se leva avec une grâce féline, étirant sa longue silhouette musclée dans la pâleur du matin naissant. Les marques pourpres de mes étreintes ponctuaient la courbe de ses hanches et de ses épaules comme des joyaux clandestins. Sans la moindre hâte, elle ramassa sa robe de soie carmin au pied du lit et l'enfila avec cette aisance naturelle qui m'avait fasciné dès son arrivée. En nouant la bride d'or à son épaule, elle se retourna vers moi, le regard flamboyant d'une malice irrésistible.
+
+— Dès que la prochaine lune rouge recouvrira le district de Shinjuku, Sakodo... veille à ce que ta baie vitrée reste déverrouillée.
+
+— Elle le sera toujours pour toi, Elena, répondis-je sans l'ombre d'une hésitation.
+
+Elle s'avança vers le sas du penthouse, sa silhouette fière et magnifique se fondant dans la clarté du corridor avant que les portes métalliques ne se referment sans bruit sur son sillage de parfum défendu. Je restai seul dans le vaste appartement, écoutant le ronronnement sourd de la mégalopole qui reprenait vie.
+
+Le monde extérieur pouvait bien s'éveiller à ses luttes d'argent, de pouvoir et de faux-semblants ; désormais, mon destin était scellé. J'avais goûté au vertige des récits inavouables, et nulle force au monde ne pourrait m'arracher à cette nuit éternelle."
   }
 ];
 
@@ -726,7 +915,7 @@ function renderStoriesGrid() {
           <div class="story-cover-overlay"></div>
           <span class="story-genre-badge ${genreClass}">${escapeHtml(story.genre || 'Inavouable')}</span>
           <span class="story-free-badge"><i class="fa-solid fa-gift"></i> Ép. 1 Libre</span>
-          ${story.isEbook ? `<span class="story-ebook-badge"><i class="fa-solid fa-book-bookmark"></i> ${escapeHtml(story.badge || "EBOOK 5 ÉPISODES")}</span>` : ""}
+          ${story.isEbook ? `<span class="story-ebook-badge"><i class="fa-solid fa-book-bookmark"></i> ${escapeHtml(story.badge || "EBOOK 5 x 3000 mots")}</span>` : ""}
         </div>
         
         <div class="story-card-body">
