@@ -1,0 +1,16 @@
+{
+  "name": "fallen-stories",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "cd web && npm install && npm run build && cd .. && mkdir -p dist && cp -r web/dist/* dist/ && cp web/dist/index.html index.html 2>/dev/null || true",
+    "dev": "cd web && npm run dev"
+  },
+  "devDependencies": {
+    "vite": "^5.4.14"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.117.2"
+  }
+}
