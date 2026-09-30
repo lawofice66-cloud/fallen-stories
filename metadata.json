@@ -1,0 +1,6 @@
+{
+  "name": "Récits Inavouables",
+  "description": "Plateforme littéraire sombre, transgressive et immersive avec Supabase, monétisation NOWPayments et studio créateurs",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

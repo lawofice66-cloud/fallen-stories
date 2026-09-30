@@ -1,0 +1,58 @@
+{
+  "id": "sakodo-nuit-interdite",
+  "saga": "Sakodo - Nuit Interdite",
+  "titre": "Sakodo - Nuit Interdite",
+  "categorie": "Érotisme",
+  "genre": "Érotisme",
+  "personnage": "sakodo",
+  "author_name": "Sakodo",
+  "preset": "Cyberpunk Neon + Sensuel Ombre + Nuit Interdite",
+  "coverUrl": "https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=800",
+  "description": "Dans la mégalopole cyberpunk sous une pluie de néons, Sakodo franchit les frontières de l'interdit lors d'une nuit de vertige, de soie et de désirs inavouables. Un ebook érotique en 5 épisodes intenses et littéraires.",
+  "isEbook": true,
+  "badge": "EBOOK 5 ÉPISODES",
+  "totalEpisodes": 5,
+  "views": 4250,
+  "episodes": [
+    {
+      "id": "sakodo-nuit-interdite-ep1",
+      "episode": 1,
+      "titre": "Le Reflet des Néons Écarlates",
+      "isFree": true,
+      "price": 0.00,
+      "file": "episode-1.json"
+    },
+    {
+      "id": "sakodo-nuit-interdite-ep2",
+      "episode": 2,
+      "titre": "Murmures dans la Pénombre",
+      "isFree": false,
+      "price": 0.99,
+      "file": "episode-2.json"
+    },
+    {
+      "id": "sakodo-nuit-interdite-ep3",
+      "episode": 3,
+      "titre": "Le Frisson de l'Étreinte",
+      "isFree": false,
+      "price": 0.99,
+      "file": "episode-3.json"
+    },
+    {
+      "id": "sakodo-nuit-interdite-ep4",
+      "episode": 4,
+      "titre": "Au-Delà du Vertige",
+      "isFree": false,
+      "price": 0.99,
+      "file": "episode-4.json"
+    },
+    {
+      "id": "sakodo-nuit-interdite-ep5",
+      "episode": 5,
+      "titre": "L'Aube des Inavouables",
+      "isFree": false,
+      "price": 0.99,
+      "file": "episode-5.json"
+    }
+  ]
+}
