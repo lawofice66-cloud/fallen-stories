@@ -1,5 +1,27 @@
 [
   {
+    "id": "fallen-stories-saison-1",
+    "slug": "fallen-stories-saison-1",
+    "title": "Fallen Stories - Saison 1 : L'Heure Inavouable",
+    "titre": "Fallen Stories - Saison 1 : L'Heure Inavouable",
+    "saga": "Fallen Stories - Saison 1",
+    "genre": "Tabou",
+    "categorie": "Tabou",
+    "author_name": "Fallen Stories",
+    "episodes": 8,
+    "totalEpisodes": 8,
+    "totalWords": 66540,
+    "totalWordCount": 66540,
+    "status": "published",
+    "badge": "SAISON 1 • 8 x 8000 MOTS",
+    "isEbook": true,
+    "views": 8940,
+    "cover_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80",
+    "coverUrl": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80",
+    "description": "8 épisodes complets de 8 000 mots avec 24 photographies d'ambiance intégrées. Une confession psychologique à la première personne : un secret interdit entre adultes consentants (+28 ans) qui bascule dans l'obsession dévorante.",
+    "preset": "Dark Thriller + Confession + Ombres"
+  },
+  {
     "id": "sakodo-nuit-interdite",
     "slug": "sakodo-nuit-interdite",
     "title": "Sakodo - La Nuit Interdite",

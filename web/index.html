@@ -150,11 +150,40 @@
             <h2 class="section-title"><i class="fa-solid fa-book-skull text-purple"></i> <span data-i18n="section_all_stories">Récits Inavouables</span></h2>
             <p class="section-desc" data-i18n="section_all_stories_sub">Épisode 1 offert sans inscription • Épisodes suivants via crypto NOWPayments</p>
           </div>
-          <div class="stories-count" id="storiesCountBadge">1 récit</div>
+          <div class="stories-count" id="storiesCountBadge">2 récits</div>
         </div>
 
-        <!-- Stories Grid (Pre-rendered with Sakodo - La Nuit Interdite) -->
+        <!-- Stories Grid (Pre-rendered with Fallen Stories Saison 1 + Sakodo) -->
         <div class="stories-grid" id="storiesGrid">
+          <!-- STORY 1 : SAISON 1 (8 épisodes x 8000 mots + 24 photos) -->
+          <article class="story-card" data-story-id="fallen-stories-saison-1" onclick="window.openReaderForStory && window.openReaderForStory('fallen-stories-saison-1')">
+            <div class="story-cover-box">
+              <img class="story-cover-img" src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80" alt="Fallen Stories - Saison 1">
+              <div class="story-cover-overlay"></div>
+              <span class="story-genre-badge genre-tabou"><i class="fa-solid fa-skull"></i> Tabou</span>
+              <span class="story-free-badge"><i class="fa-solid fa-gift"></i> Ép. 1 Libre</span>
+              <span class="story-ebook-badge"><i class="fa-solid fa-film"></i> SAISON 1 • 8 x 8000 MOTS</span>
+            </div>
+            
+            <div class="story-card-body">
+              <h3 class="story-card-title">Fallen Stories — Saison 1 : L'Heure Inavouable</h3>
+              <div class="story-card-author">
+                <i class="fa-solid fa-feather-pointed text-purple"></i> Fallen Stories
+              </div>
+              <p class="story-card-desc">8 épisodes complets de 8 000 mots avec 24 photographies d'ambiance intégrées. Une confession psychologique à la première personne : un secret interdit entre adultes consentants (+28 ans) qui bascule dans l'obsession dévorante.</p>
+              
+              <div class="story-card-footer">
+                <div class="story-episodes-info">
+                  <i class="fa-solid fa-eye text-cyan"></i> <strong>8 940</strong> lectures • 24 photos
+                </div>
+                <button class="btn btn-primary btn-sm read-story-btn" data-story-id="fallen-stories-saison-1" onclick="event.stopPropagation(); window.openReaderForStory && window.openReaderForStory('fallen-stories-saison-1')">
+                  <span>Lire</span> <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- STORY 2 : SAKODO - LA NUIT INTERDITE -->
           <article class="story-card" data-story-id="sakodo-nuit-interdite" onclick="window.openReaderForStory && window.openReaderForStory('sakodo-nuit-interdite')">
             <div class="story-cover-box">
               <img class="story-cover-img" src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=800" alt="Sakodo - La Nuit Interdite">

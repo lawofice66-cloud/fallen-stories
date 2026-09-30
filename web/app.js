@@ -221,6 +221,28 @@ function setLanguage(lang) {
 // 3. SAGA EBOOK OFFICIELLE : SAKODO - NUIT INTERDITE (5 ÉPISODES)
 // ============================================================================
 
+
+const SEASON_1_STORY = {
+  id: "fallen-stories-saison-1",
+  slug: "fallen-stories-saison-1",
+  saga: "Fallen Stories - Saison 1 : L'Heure Inavouable",
+  title: "Fallen Stories - Saison 1 : L'Heure Inavouable",
+  genre: "Tabou",
+  author_name: "Fallen Stories",
+  preset: "Dark Thriller + Confession + Ombres",
+  cover_url: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80",
+  description: "8 épisodes complets de 8 000 mots avec 24 photographies d'ambiance intégrées. Une confession psychologique à la première personne : un secret interdit entre adultes consentants (+28 ans) qui bascule dans l'obsession dévorante.",
+  isEbook: true,
+  badge: "SAISON 1 • 8 x 8000 MOTS",
+  episodes: 8,
+  totalEpisodes: 8,
+  totalWords: 66540,
+  totalWordCount: 66540,
+  views: 8940,
+  status: "published",
+  created_at: new Date().toISOString()
+};
+
 const SAKODO_SAGA_DATA = {
   id: "sakodo-nuit-interdite",
   slug: "sakodo-nuit-interdite",
@@ -250,7 +272,7 @@ const SAKODO_EPISODES_DATA = [{"id": "sakodo-nuit-interdite-ep1", "story_id": "s
 // ÉTAT GLOBAL DE L'APPLICATION
 // ============================================================================
 const APP_STATE = {
-  stories: [SAKODO_SAGA_DATA],
+  stories: [SEASON_1_STORY, SAKODO_SAGA_DATA],
   episodes: SAKODO_EPISODES_DATA,
   activeStory: SAKODO_SAGA_DATA,
   activeEpisode: SAKODO_EPISODES_DATA[0],
@@ -304,8 +326,8 @@ async function fetchStoriesFromSupabase() {
 
 function loadLocalStories() {
   const localStories = JSON.parse(localStorage.getItem("recits_inavouables_stories") || "[]");
-  // Toujours inclure la saga officielle Sakodo
-  const combined = [SAKODO_SAGA_DATA, ...localStories.filter(s => s.id !== SAKODO_SAGA_DATA.id)];
+  const defaultStories = [SEASON_1_STORY, SAKODO_SAGA_DATA];
+  const combined = [...defaultStories, ...localStories.filter(s => s.id !== SAKODO_SAGA_DATA.id && s.id !== SEASON_1_STORY.id)];
   APP_STATE.stories = combined;
   renderStoriesGrid();
   renderTopCreators();
@@ -313,6 +335,28 @@ function loadLocalStories() {
 }
 
 async function fetchEpisodesForStory(storyId) {
+  if (storyId === "fallen-stories-saison-1" || (typeof storyId === "string" && (storyId.includes("saison-1") || storyId.includes("fallen")))) {
+    try {
+      const res = await fetch("episodes.json");
+      if (res.ok) {
+        const eps = await res.json();
+        return eps.map(e => ({
+          id: `fallen-stories-ep${e.id}`,
+          story_id: "fallen-stories-saison-1",
+          episode_number: e.id,
+          title: e.title,
+          content: e.content,
+          is_free: e.free,
+          price: parseFloat(e.price) || (e.free ? 0.0 : 0.99),
+          wordCount: e.word_count,
+          images: e.images
+        }));
+      }
+    } catch (err) {
+      console.warn("Chargement episodes.json :", err);
+    }
+  }
+
   if (storyId === "sakodo-nuit-interdite" || (typeof storyId === "string" && storyId.includes("sakodo"))) {
     return SAKODO_EPISODES_DATA;
   }
@@ -986,11 +1030,38 @@ function loadEpisode(episode) {
 
 function formatStoryContent(text) {
   if (!text) return "<p>Chapitre en cours de rédaction...</p>";
-  return text
+
+  // Remplacement des balises {{IMAGE:filename | prompt: ...}}
+  let processed = text.replace(/\{\{IMAGE:([^|]+)\s*\|\s*prompt:\s*([^}]+)\}\}/gi, (match, file, prompt) => {
+    const filename = file.trim();
+    const promptText = prompt.trim();
+    return `\n\n<div class="cinematic-photo-card">
+      <div class="cinematic-photo-header">
+        <span class="cinematic-badge"><i class="fa-solid fa-camera"></i> PHOTOGRAPHIE DE SCÈNE • THRILLER SOMBRE</span>
+        <span class="cinematic-ar">16:9 • ${escapeHtml(filename)}</span>
+      </div>
+      <div class="cinematic-photo-visual">
+        <div class="cinematic-photo-glow"></div>
+        <div class="cinematic-photo-overlay"></div>
+      </div>
+      <div class="cinematic-photo-caption">
+        <i class="fa-solid fa-quote-left text-purple"></i>
+        <span class="cinematic-prompt-text">${escapeHtml(promptText)}</span>
+      </div>
+    </div>\n\n`;
+  });
+
+  return processed
     .split("\n\n")
     .map(p => {
       let trimmed = p.trim();
       if (!trimmed) return "";
+      if (trimmed.startsWith("<div class=\"cinematic-photo-card\"")) {
+        return trimmed;
+      }
+      if (trimmed.startsWith("[IMAGE ") && trimmed.includes(" - Ambiance :")) {
+        return ""; // déjà représenté par la carte ci-dessus
+      }
       if (trimmed.startsWith("# ")) {
         return `<h2 style="font-family:var(--font-display); font-size:1.5rem; color:#f1f5f9; margin-bottom:12px; border-bottom:1px solid var(--border-subtle); padding-bottom:8px;">${escapeHtml(trimmed.slice(2))}</h2>`;
       }

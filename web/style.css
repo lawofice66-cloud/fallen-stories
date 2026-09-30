@@ -2340,3 +2340,100 @@ body.dark-mode {
   border: 1px solid var(--border-subtle);
 }
 
+
+/* ========================================================================== */
+/* CINEMATIC PHOTO CARDS (SAISON 1 FALLEN STORIES) */
+/* ========================================================================== */
+
+.cinematic-photo-card {
+  margin: 36px 0;
+  background: linear-gradient(180deg, #131722, #0b0d14);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(139, 92, 246, 0.2);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.cinematic-photo-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-purple);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 35px var(--accent-purple-glow);
+}
+
+.cinematic-photo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  background: rgba(14, 17, 24, 0.9);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.76rem;
+}
+
+.cinematic-badge {
+  color: var(--accent-purple);
+  font-weight: 800;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cinematic-ar {
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #c084fc;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+}
+
+.cinematic-photo-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 380px;
+  overflow: hidden;
+  background: #090a0f radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, #000 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cinematic-photo-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.cinematic-photo-card:hover .cinematic-photo-visual img {
+  transform: scale(1.03);
+}
+
+.cinematic-photo-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(11, 13, 20, 0.8) 100%);
+  pointer-events: none;
+}
+
+.cinematic-photo-caption {
+  padding: 16px 20px;
+  background: #0e1118;
+  font-family: var(--font-reading);
+  font-size: 0.92rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.cinematic-prompt-text {
+  flex: 1;
+  font-style: italic;
+  color: #e2e8f0;
+}
