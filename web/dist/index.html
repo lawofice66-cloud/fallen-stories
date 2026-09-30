@@ -151,15 +151,37 @@
             <h2 class="section-title"><i class="fa-solid fa-book-skull text-purple"></i> <span data-i18n="section_all_stories">Récits Inavouables</span></h2>
             <p class="section-desc" data-i18n="section_all_stories_sub">Épisode 1 offert sans inscription • Épisodes suivants via crypto NOWPayments</p>
           </div>
-          <div class="stories-count" id="storiesCountBadge">0 récit</div>
+          <div class="stories-count" id="storiesCountBadge">1 récit</div>
         </div>
 
-        <!-- Stories Grid (clean and empty initially) -->
+        <!-- Stories Grid (Pre-rendered with Sakodo - La Nuit Interdite) -->
         <div class="stories-grid" id="storiesGrid">
-          <div class="loading-state">
-            <div class="spinner"></div>
-            <p data-i18n="loading_stories">Vérification de la bibliothèque Supabase...</p>
-          </div>
+          <article class="story-card" data-story-id="sakodo-nuit-interdite">
+            <div class="story-cover-box">
+              <img class="story-cover-img" src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=800" alt="Sakodo - La Nuit Interdite">
+              <div class="story-cover-overlay"></div>
+              <span class="story-genre-badge genre-erotisme">Cyberpunk</span>
+              <span class="story-free-badge"><i class="fa-solid fa-gift"></i> Ép. 1 Libre</span>
+              <span class="story-ebook-badge"><i class="fa-solid fa-book-bookmark"></i> EBOOK 5 x 3000 mots</span>
+            </div>
+            
+            <div class="story-card-body">
+              <h3 class="story-card-title">Sakodo - La Nuit Interdite</h3>
+              <div class="story-card-author">
+                <i class="fa-solid fa-feather-pointed text-purple"></i> Sakodo
+              </div>
+              <p class="story-card-desc">Dans la mégalopole cyberpunk de Neo-Kuro sous une pluie de néons écarlates, Sakodo franchit les frontières de l'interdit lors d'une nuit de vertige, de soie et de désirs inavouables. Un ebook érotique complet en 5 longs chapitres intenses et littéraires.</p>
+              
+              <div class="story-card-footer">
+                <div class="story-episodes-info">
+                  <i class="fa-solid fa-eye text-cyan"></i> <strong>4 250</strong> lectures
+                </div>
+                <button class="btn btn-primary btn-sm read-story-btn" data-story-id="sakodo-nuit-interdite">
+                  <span>Lire</span> <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
