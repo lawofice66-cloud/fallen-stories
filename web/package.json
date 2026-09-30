@@ -4,6 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "npx -y typescript --noEmit"
+    "build": "vite build",
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^5.4.14"
   }
 }
