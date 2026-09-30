@@ -12,8 +12,8 @@
   <!-- Supabase JS Client v2 & Mammoth.js for Word DOCX files -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
-  <script type="module" crossorigin src="/assets/index-BFdAm-w8.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-D4MujHf1.css">
+  <script type="module" crossorigin src="/assets/index-CiLqokfu.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-D0Mb_qXI.css">
 </head>
 <body class="dark-mode">
 
@@ -156,7 +156,7 @@
 
         <!-- Stories Grid (Pre-rendered with Sakodo - La Nuit Interdite) -->
         <div class="stories-grid" id="storiesGrid">
-          <article class="story-card" data-story-id="sakodo-nuit-interdite">
+          <article class="story-card" data-story-id="sakodo-nuit-interdite" onclick="window.openReaderForStory && window.openReaderForStory('sakodo-nuit-interdite')">
             <div class="story-cover-box">
               <img class="story-cover-img" src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=800" alt="Sakodo - La Nuit Interdite">
               <div class="story-cover-overlay"></div>
@@ -176,7 +176,7 @@
                 <div class="story-episodes-info">
                   <i class="fa-solid fa-eye text-cyan"></i> <strong>4 250</strong> lectures
                 </div>
-                <button class="btn btn-primary btn-sm read-story-btn" data-story-id="sakodo-nuit-interdite">
+                <button class="btn btn-primary btn-sm read-story-btn" data-story-id="sakodo-nuit-interdite" onclick="event.stopPropagation(); window.openReaderForStory && window.openReaderForStory('sakodo-nuit-interdite')">
                   <span>Lire</span> <i class="fa-solid fa-arrow-right"></i>
                 </button>
               </div>

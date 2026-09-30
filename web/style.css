@@ -666,6 +666,14 @@ body.dark-mode {
   transition: all 0.3s ease;
   box-shadow: var(--shadow-card);
   position: relative;
+  cursor: pointer;
+}
+
+.read-story-btn {
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 10;
 }
 
 .story-card:hover {
