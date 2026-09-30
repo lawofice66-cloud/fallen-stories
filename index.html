@@ -1,842 +1,466 @@
 <!DOCTYPE html>
-<html lang="fr" data-lang="fr">
+<html lang="fr" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Récits Inavouables - Littérature Sombre & Transgressive</title>
+  <title>Fallen Stories — Fictions Sombres, Romance & Récits Inavouables</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              950: '#06040a',
+              900: '#0d0914',
+              800: '#171124',
+              700: '#231a38',
+              accent: '#a855f7',
+              gold: '#f59e0b',
+              amber: '#d97706'
+            }
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            body: ['Lora', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
   <!-- Google Fonts & Font Awesome Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Supabase JS Client v2 & Mammoth.js for Word DOCX files -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Supabase JS Client v2 CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
-  <script type="module" crossorigin src="/assets/index-D4GvWq0I.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-BlxNQw_o.css">
 </head>
-<body class="dark-mode">
+<body class="bg-brand-950 text-gray-200 font-sans min-h-screen flex flex-col antialiased selection:bg-purple-600 selection:text-white">
 
-  <!-- TOP BANNER (Supabase status + Quick SQL script) -->
-  <div id="connectionBanner" class="conn-banner" style="display:none;">
-    <div class="banner-content">
-      <div class="banner-left">
-        <span class="status-indicator live"></span>
-        <span id="connText">Base Supabase connectée : <strong>Récits Inavouables</strong></span>
-      </div>
-      <div class="banner-right">
-        <span class="reader-badge-pill" data-i18n="reader_free_notice">
-          <i class="fa-solid fa-lock-open"></i> Accès Lecteur libre (sans inscription)
-        </span>
-        <button class="btn-text-action" id="openSqlBtn" title="Voir les requêtes SQL Supabase" style="display:none;">
-          <i class="fa-solid fa-database"></i> <span data-i18n="sql_setup_btn">Script SQL</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
+  <!-- ======================================================== -->
   <!-- NAVIGATION HEADER -->
-  <header class="app-header">
-    <div class="header-container">
-      <div class="brand" id="brandHomeBtn">
-        <div class="brand-logo">
-          <i class="fa-solid fa-fire-flame-curved"></i>
+  <!-- ======================================================== -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-brand-950/80 border-b border-purple-900/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 via-purple-600 to-amber-500 flex items-center justify-center text-white shadow-lg shadow-purple-950/60 group-hover:scale-105 transition-transform duration-300">
+          <i class="fa-solid fa-fire-flame-curved text-lg"></i>
         </div>
-        <div class="brand-text">
-          <div class="brand-title">RÉCITS <span class="accent-glow">INAVOUABLES</span></div>
-          <div class="brand-sub" data-i18n="brand_subtitle">LITTÉRATURE TRANSGRESSIVE</div>
+        <div>
+          <span class="font-serif tracking-wider font-bold text-xl text-white block leading-tight">
+            FALLEN <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-amber-400">STORIES</span>
+          </span>
+          <span class="text-[10px] tracking-widest text-purple-400/80 uppercase font-semibold block">Littérature Sombre & Transgressive</span>
         </div>
-      </div>
+      </a>
 
-      <nav class="nav-links">
-        <button class="nav-btn active" data-tab="home" id="navHomeBtn">
-          <i class="fa-solid fa-compass"></i> <span data-i18n="nav_explore">Explorer</span>
-        </button>
-        <button class="nav-btn" data-tab="creators" id="navCreatorsBtn">
-          <i class="fa-solid fa-crown"></i> <span data-i18n="nav_top_creators">Top Créateurs</span>
-        </button>
-        <button class="nav-btn creator-only-btn" data-tab="dashboard" id="navDashboardBtn">
-          <i class="fa-solid fa-pen-nib"></i> <span data-i18n="nav_creator_studio">Studio Créateur</span>
-        </button>
+      <!-- Navigation links -->
+      <nav class="flex items-center gap-3 sm:gap-4">
+        <a href="index.html" class="text-sm font-semibold text-white bg-purple-900/30 border border-purple-500/30 px-3.5 py-2 rounded-xl flex items-center gap-2 shadow-sm">
+          <i class="fa-solid fa-compass text-purple-400"></i>
+          <span class="hidden sm:inline">Explorer</span>
+        </a>
+        <a href="soumettre.html" class="text-sm font-semibold text-amber-300 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20 transition-all px-4 py-2 rounded-xl flex items-center gap-2 shadow-sm shadow-amber-950/40">
+          <i class="fa-solid fa-feather-pointed text-amber-400"></i>
+          <span>Soumettre un récit</span>
+          <span class="hidden md:inline text-[11px] bg-amber-400/20 text-amber-200 px-1.5 py-0.5 rounded font-mono font-bold">60%</span>
+        </a>
       </nav>
-
-      <div class="header-actions">
-        <!-- Language Switcher -->
-        <button class="lang-switch-btn" id="langToggleBtn" title="Changer de langue / Switch Language">
-          <i class="fa-solid fa-globe"></i> <span id="currentLangLabel">FR</span>
-        </button>
-
-        <!-- Creator Auth section (Creators only register) -->
-        <div id="authNavContainer">
-          <button class="btn btn-outline" id="openAuthModalBtn">
-            <i class="fa-solid fa-feather-pointed"></i> <span data-i18n="auth_creator_btn">Espace Créateur</span>
-          </button>
-        </div>
-      </div>
     </div>
   </header>
 
-  <!-- MAIN VIEWPORT -->
-  <main class="main-viewport">
-
-    <!-- ========================================== -->
-    <!-- TAB 1 : EXPLORE / HOME PAGE -->
-    <!-- ========================================== -->
-    <section id="tabHome" class="content-tab active">
-      <!-- HERO BANNER -->
-      <div class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="hero-inner">
-          <div class="hero-badge">
-            <i class="fa-solid fa-eye-slash"></i> <span data-i18n="hero_badge">FICTIONS SOMBRES & TRANSGRESSIVES</span>
-          </div>
-          <h1 class="hero-title" data-i18n="hero_title">
-            Les Secrets que l'on n'Ose Murmurer.<br>
-            <span class="text-gradient">Récits Inavouables.</span>
-          </h1>
-          <p class="hero-subtitle" data-i18n="hero_desc">
-            Explorez des fictions sombres, interdites, intenses et taboues. L'épisode 1 est 100% libre d'accès sans inscription. Débloquez les chapitres suivants en toute discrétion via NOWPayments.
-          </p>
-          <div class="hero-cta-group">
-            <button class="btn btn-primary" id="heroStartReadingBtn">
-              <i class="fa-solid fa-book-open"></i> <span data-i18n="hero_start_btn">Découvrir les récits</span>
-            </button>
-            <button class="btn btn-ghost" id="heroCreatorBtn">
-              <i class="fa-solid fa-feather-pointed"></i> <span data-i18n="hero_become_creator">Publier son histoire (Créateurs)</span>
-            </button>
-          </div>
-        </div>
+  <!-- ======================================================== -->
+  <!-- HERO BANNER -->
+  <!-- ======================================================== -->
+  <section class="relative overflow-hidden py-14 lg:py-20 border-b border-purple-950/60 bg-gradient-to-b from-brand-900 via-brand-950 to-brand-950">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-purple-900/25 via-transparent to-transparent pointer-events-none"></div>
+    
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-10">
+      
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-purple-900/30 border border-purple-700/40 text-purple-300 mb-6 shadow-inner">
+        <i class="fa-solid fa-book-skull text-purple-400"></i>
+        <span>BIBLIOTHÈQUE LITTÉRAIRE DYNAMIQUE SUPABASE</span>
       </div>
 
-      <!-- FILTER & SEARCH BAR -->
-      <div class="filter-bar-container">
-        <div class="search-box">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" id="storySearchInput" placeholder="Rechercher un récit inavouable, un auteur..." data-i18n-placeholder="search_placeholder">
-          <button id="clearSearchBtn" class="clear-btn" style="display:none;"><i class="fa-solid fa-xmark"></i></button>
-        </div>
+      <h1 class="font-serif text-3xl sm:text-6xl font-black text-white tracking-tight leading-tight mb-5">
+        Les Secrets que l'on n'Ose Murmurer.<br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-amber-300">
+          Fallen Stories.
+        </span>
+      </h1>
 
-        <!-- GENRES FILTERS (Maintained + Erotisme + Tabou) -->
-        <div class="genre-chips-scroll" id="genreFilters">
-          <button class="chip active" data-genre="all" data-i18n="genre_all">Tous les genres</button>
-          <button class="chip" data-genre="Cyberpunk">Cyberpunk</button>
-          <button class="chip" data-genre="Dark Fantasy">Dark Fantasy</button>
-          <button class="chip" data-genre="Sci-Fi Thriller">Sci-Fi Thriller</button>
-          <button class="chip" data-genre="Horreur / Occulte">Horreur / Occulte</button>
-          <button class="chip" data-genre="Dystopie">Dystopie</button>
-          <button class="chip chip-erotisme" data-genre="Érotisme"><i class="fa-solid fa-heart"></i> Érotisme</button>
-          <button class="chip chip-tabou" data-genre="Tabou"><i class="fa-solid fa-skull"></i> Tabou</button>
+      <p class="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-8">
+        Explorez nos fictions sombres, passionnées, interdites et immersives. Chaque histoire est publiée par des auteurs indépendants rémunérés à 60% en direct.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="#catalogue" class="px-6 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-purple-700 to-purple-600 hover:from-purple-600 hover:to-purple-500 transition-all shadow-lg shadow-purple-950/60 flex items-center gap-2">
+          <i class="fa-solid fa-book-open"></i>
+          <span>Découvrir les récits</span>
+        </a>
+        <a href="soumettre.html" class="px-6 py-3.5 rounded-xl font-bold text-sm text-amber-300 bg-brand-900/90 border border-amber-500/40 hover:bg-amber-500/10 transition-all flex items-center gap-2 shadow-lg shadow-black/40">
+          <i class="fa-solid fa-feather-pointed text-amber-400"></i>
+          <span>Devenir Auteur (60% de royalties)</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- MAIN CATALOGUE CONTAINER -->
+  <!-- ======================================================== -->
+  <main id="catalogue" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14 space-y-8">
+    
+    <!-- SEARCH & FILTER BAR -->
+    <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-brand-900/40 backdrop-blur-sm border border-purple-900/30 p-4 rounded-2xl">
+      
+      <!-- Search input -->
+      <div class="relative flex-1">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500">
+          <i class="fa-solid fa-magnifying-glass text-sm"></i>
         </div>
+        <input 
+          type="text" 
+          id="searchInput"
+          placeholder="Rechercher une histoire, un auteur..." 
+          class="w-full bg-brand-950/90 border border-purple-900/40 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+        >
       </div>
 
-      <!-- TOP CREATORS PREVIEW -->
-      <div class="section-container top-creators-compact" id="topCreatorsSection">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title"><i class="fa-solid fa-crown text-gold"></i> <span data-i18n="section_top_creators">Top Créateurs de la Semaine</span></h2>
-            <p class="section-desc" data-i18n="section_top_creators_sub">Les plumes les plus lues et audacieuses</p>
-          </div>
-          <button class="btn-link" id="viewAllCreatorsBtn" data-i18n="view_all">Voir tout <i class="fa-solid fa-arrow-right"></i></button>
-        </div>
+      <!-- Genre Filter Pills -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none" id="genreFilters">
+        <button data-genre="all" class="genre-btn active px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-purple-600 text-white transition-all shadow-sm">
+          Tous
+        </button>
+        <button data-genre="Romance" class="genre-btn px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-brand-950 text-gray-400 hover:text-white border border-purple-900/30 hover:border-purple-600 transition-all">
+          Romance
+        </button>
+        <button data-genre="Dark Romance" class="genre-btn px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-brand-950 text-gray-400 hover:text-white border border-purple-900/30 hover:border-purple-600 transition-all">
+          Dark Romance
+        </button>
+        <button data-genre="Fantasy" class="genre-btn px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-brand-950 text-gray-400 hover:text-white border border-purple-900/30 hover:border-purple-600 transition-all">
+          Fantasy
+        </button>
+        <button data-genre="Billionaire" class="genre-btn px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-brand-950 text-gray-400 hover:text-white border border-purple-900/30 hover:border-purple-600 transition-all">
+          Billionaire
+        </button>
+      </div>
+    </div>
 
-        <div class="creators-cards-grid" id="topCreatorsList">
-          <!-- Dynamically populated or empty banner -->
+    <!-- CATALOGUE HEADER WITH DYNAMIC COUNT -->
+    <div class="flex items-center justify-between border-b border-purple-900/30 pb-4">
+      <div>
+        <h2 class="font-serif text-2xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-book-bookmark text-purple-400"></i>
+          <span>Histoires Disponibles</span>
+        </h2>
+        <p class="text-xs text-gray-400 mt-1">Catalogue synchronisé en direct depuis Supabase</p>
+      </div>
+      <div id="storiesCount" class="text-xs font-semibold text-purple-300 bg-purple-950/80 px-3 py-1.5 rounded-lg border border-purple-800/40">
+        Chargement...
+      </div>
+    </div>
+
+    <!-- DYNAMIC STORIES GRID -->
+    <div id="storiesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 sm:gap-8">
+      <!-- Loading Skeletons injected by JS -->
+      <div class="animate-pulse bg-brand-900/40 rounded-2xl border border-purple-900/30 overflow-hidden h-[420px]">
+        <div class="bg-purple-950/40 h-52 w-full"></div>
+        <div class="p-5 space-y-3">
+          <div class="h-4 bg-purple-900/40 rounded w-1/3"></div>
+          <div class="h-6 bg-purple-900/30 rounded w-3/4"></div>
+          <div class="h-3 bg-purple-900/20 rounded w-1/2"></div>
         </div>
       </div>
-
-      <!-- ALL STORIES SECTION -->
-      <div class="section-container">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title"><i class="fa-solid fa-book-skull text-purple"></i> <span data-i18n="section_all_stories">Récits Inavouables</span></h2>
-            <p class="section-desc" data-i18n="section_all_stories_sub">Épisode 1 offert sans inscription • Épisodes suivants via crypto NOWPayments</p>
-          </div>
-          <div class="stories-count" id="storiesCountBadge">3 récits</div>
-        </div>
-
-                <!-- Stories Grid (Pre-rendered with 3 Récits: Le Patron, Clara & Adrien, Sakodo) -->
-        <div class="stories-grid" id="storiesGrid">
-          <!-- STORY 1 : SAISON DU PATRON (8 épisodes x 8000 mots + 24 photos) -->
-          <article class="story-card" data-story-id="le-patron-heure-sup" onclick="window.openReaderForStory && window.openReaderForStory('le-patron-heure-sup')">
-            <div class="story-cover-box">
-              <img class="story-cover-img" src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80" alt="Le Patron — L'Heure Sup">
-              <div class="story-cover-overlay"></div>
-              <span class="story-genre-badge genre-tabou"><i class="fa-solid fa-briefcase"></i> Tabou</span>
-              <span class="story-free-badge"><i class="fa-solid fa-gift"></i> Ép. 1 Libre</span>
-              <span class="story-ebook-badge"><i class="fa-solid fa-star"></i> NOUVELLE SAISON • LE PATRON</span>
-            </div>
-            
-            <div class="story-card-body">
-              <h3 class="story-card-title">Le Patron — L'Heure Sup (Saison 1)</h3>
-              <div class="story-card-author">
-                <i class="fa-solid fa-feather-pointed text-purple"></i> Fallen Stories • Léa & Adam
-              </div>
-              <p class="story-card-desc">Nice, 21h47. 8 épisodes complets de plus de 8 000 mots avec 24 photographies d'ambiance. Léa (29 ans) reste pour boucler le dossier Atlas avec son patron Adam (42 ans). Seuls dans la tour face à la mer, une attirance interdite et dangereuse prend racine.</p>
-              
-              <div class="story-card-footer">
-                <div class="story-episodes-info">
-                  <i class="fa-solid fa-eye text-cyan"></i> <strong>8 940</strong> lectures • 24 photos
-                </div>
-                <button class="btn btn-primary btn-sm read-story-btn" data-story-id="le-patron-heure-sup" onclick="event.stopPropagation(); window.openReaderForStory && window.openReaderForStory('le-patron-heure-sup')">
-                  <span>Lire</span> <i class="fa-solid fa-arrow-right"></i>
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <!-- STORY 2 : FALLEN STORIES - LES HEURES CLANDESTINES -->
-          <article class="story-card" data-story-id="fallen-stories-clara-adrien" onclick="window.openReaderForStory && window.openReaderForStory('fallen-stories-clara-adrien')">
-            <div class="story-cover-box">
-              <img class="story-cover-img" src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80" alt="Fallen Stories - Les Heures Clandestines">
-              <div class="story-cover-overlay"></div>
-              <span class="story-genre-badge genre-tabou"><i class="fa-solid fa-book-open"></i> Manuscrits</span>
-              <span class="story-free-badge"><i class="fa-solid fa-gift"></i> Ép. 1 Libre</span>
-              <span class="story-ebook-badge"><i class="fa-solid fa-feather"></i> 8 x 8000 MOTS</span>
-            </div>
-            
-            <div class="story-card-body">
-              <h3 class="story-card-title">Fallen Stories — Les Heures Clandestines</h3>
-              <div class="story-card-author">
-                <i class="fa-solid fa-feather-pointed text-purple"></i> Adrien Valmont
-              </div>
-              <p class="story-card-desc">Adrien (32 ans), restaurateur de manuscrits rares, et Clara (30 ans), mariée à Julien d'Arblay. Une boîte de laque noire, des lettres intimes interdites et une passion clandestine au cœur de la nuit parisienne.</p>
-              
-              <div class="story-card-footer">
-                <div class="story-episodes-info">
-                  <i class="fa-solid fa-eye text-cyan"></i> <strong>5 410</strong> lectures
-                </div>
-                <button class="btn btn-primary btn-sm read-story-btn" data-story-id="fallen-stories-clara-adrien" onclick="event.stopPropagation(); window.openReaderForStory && window.openReaderForStory('fallen-stories-clara-adrien')">
-                  <span>Lire</span> <i class="fa-solid fa-arrow-right"></i>
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <!-- STORY 3 : SAKODO - LA NUIT INTERDITE -->
-          <article class="story-card" data-story-id="sakodo-nuit-interdite" onclick="window.openReaderForStory && window.openReaderForStory('sakodo-nuit-interdite')">
-            <div class="story-cover-box">
-              <img class="story-cover-img" src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=800" alt="Sakodo - La Nuit Interdite">
-              <div class="story-cover-overlay"></div>
-              <span class="story-genre-badge genre-erotisme">Cyberpunk</span>
-              <span class="story-free-badge"><i class="fa-solid fa-gift"></i> Ép. 1 Libre</span>
-              <span class="story-ebook-badge"><i class="fa-solid fa-book-bookmark"></i> EBOOK 5 x 3000 MOTS</span>
-            </div>
-            
-            <div class="story-card-body">
-              <h3 class="story-card-title">Sakodo — La Nuit Interdite</h3>
-              <div class="story-card-author">
-                <i class="fa-solid fa-feather-pointed text-purple"></i> Sakodo
-              </div>
-              <p class="story-card-desc">Dans la mégalopole cyberpunk de Neo-Kuro sous une pluie de néons écarlates, Sakodo franchit les frontières de l'interdit lors d'une nuit de vertige, de soie et de désirs inavouables. Un ebook érotique complet en 5 longs chapitres intenses et littéraires.</p>
-              
-              <div class="story-card-footer">
-                <div class="story-episodes-info">
-                  <i class="fa-solid fa-eye text-cyan"></i> <strong>4 250</strong> lectures
-                </div>
-                <button class="btn btn-primary btn-sm read-story-btn" data-story-id="sakodo-nuit-interdite" onclick="event.stopPropagation(); window.openReaderForStory && window.openReaderForStory('sakodo-nuit-interdite')">
-                  <span>Lire</span> <i class="fa-solid fa-arrow-right"></i>
-                </button>
-              </div>
-            </div>
-          </article>
+      <div class="animate-pulse bg-brand-900/40 rounded-2xl border border-purple-900/30 overflow-hidden h-[420px] hidden sm:block">
+        <div class="bg-purple-950/40 h-52 w-full"></div>
+        <div class="p-5 space-y-3">
+          <div class="h-4 bg-purple-900/40 rounded w-1/3"></div>
+          <div class="h-6 bg-purple-900/30 rounded w-3/4"></div>
+          <div class="h-3 bg-purple-900/20 rounded w-1/2"></div>
         </div>
       </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- TAB 2 : TOP CREATORS FULL VIEW -->
-    <!-- ========================================== -->
-    <section id="tabCreators" class="content-tab">
-      <div class="section-container">
-        <div class="tab-hero-box">
-          <div class="tab-hero-icon"><i class="fa-solid fa-crown text-gold"></i></div>
-          <h1 class="tab-hero-title" data-i18n="creators_hall_title">Le Panthéon des Auteurs</h1>
-          <p class="tab-hero-desc" data-i18n="creators_hall_desc">
-            Classement hebdomadaire des créateurs de Récits Inavouables basé sur les lectures et les chapitres débloqués.
-          </p>
-        </div>
-
-        <div class="leaderboard-container" id="fullLeaderboard">
-          <!-- Injected dynamically -->
-        </div>
-
-        <!-- Creator Callout -->
-        <div class="become-creator-card">
-          <div class="card-content">
-            <h3 data-i18n="callout_creator_title">Écrivez ce que personne d'autre n'ose écrire</h3>
-            <p data-i18n="callout_creator_desc">Créez votre profil Créateur, publiez vos récits en Cyberpunk, Dark Fantasy, Érotisme ou Tabou. Vos récits sont vérifiés manuellement et monétisés via crypto.</p>
-          </div>
-          <button class="btn btn-primary" id="openCreatorSignupBtn" data-i18n="callout_creator_btn">
-            <i class="fa-solid fa-feather-pointed"></i> Inscription Créateur
-          </button>
+      <div class="animate-pulse bg-brand-900/40 rounded-2xl border border-purple-900/30 overflow-hidden h-[420px] hidden lg:block">
+        <div class="bg-purple-950/40 h-52 w-full"></div>
+        <div class="p-5 space-y-3">
+          <div class="h-4 bg-purple-900/40 rounded w-1/3"></div>
+          <div class="h-6 bg-purple-900/30 rounded w-3/4"></div>
+          <div class="h-3 bg-purple-900/20 rounded w-1/2"></div>
         </div>
       </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- TAB 3 : CREATOR DASHBOARD -->
-    <!-- ========================================== -->
-    <section id="tabDashboard" class="content-tab">
-      <div class="section-container">
-        
-        <!-- Dashboard Header -->
-        <div class="dashboard-banner">
-          <div class="creator-profile-summary">
-            <div class="creator-avatar" id="dashAvatar">
-              <i class="fa-solid fa-feather-pointed"></i>
-            </div>
-            <div>
-              <div class="creator-badge" id="dashRoleBadge">Créateur Auteur</div>
-              <h1 class="dashboard-user-name" id="dashAuthorName">Mon Studio d'Écriture</h1>
-              <p class="dashboard-subtext" id="dashEmail">Auteur certifié</p>
-            </div>
-          </div>
-          <div class="dash-actions-row">
-            <button class="btn btn-primary" id="btnOpenNewStoryModal">
-              <i class="fa-solid fa-plus"></i> <span data-i18n="dash_btn_new_story">Nouveau Récit</span>
-            </button>
-            <button class="btn btn-accent" id="btnOpenNewEpisodeModal">
-              <i class="fa-solid fa-file-circle-plus"></i> <span data-i18n="dash_btn_new_episode">Ajouter un Épisode</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Verification Notice -->
-        <div class="moderation-notice-card">
-          <i class="fa-solid fa-user-shield text-gold"></i>
-          <div>
-            <strong data-i18n="mod_notice_title">Vérification manuelle des récits :</strong>
-            <span data-i18n="mod_notice_desc">Toute nouvelle histoire est soumise pour vérification manuelle par l'administrateur avant diffusion publique, garantissant la qualité de Récits Inavouables.</span>
-          </div>
-        </div>
-
-        <!-- Dashboard Stats Grid -->
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-icon"><i class="fa-solid fa-book"></i></div>
-            <div class="stat-details">
-              <div class="stat-value" id="statStoriesCount">0</div>
-              <div class="stat-label" data-i18n="stat_stories">Récits soumis</div>
-            </div>
-          </div>
-
-          <div class="stat-card">
-            <div class="stat-icon"><i class="fa-solid fa-scroll"></i></div>
-            <div class="stat-details">
-              <div class="stat-value" id="statEpisodesCount">0</div>
-              <div class="stat-label" data-i18n="stat_episodes">Épisodes rédigés</div>
-            </div>
-          </div>
-
-          <div class="stat-card">
-            <div class="stat-icon"><i class="fa-solid fa-eye text-cyan"></i></div>
-            <div class="stat-details">
-              <div class="stat-value" id="statTotalViews">0</div>
-              <div class="stat-label" data-i18n="stat_views">Lectures cumulées</div>
-            </div>
-          </div>
-
-          <div class="stat-card">
-            <div class="stat-icon"><i class="fa-solid fa-coins text-gold"></i></div>
-            <div class="stat-details">
-              <div class="stat-value" id="statEstimatedEarnings">$0.00</div>
-              <div class="stat-label" data-i18n="stat_earnings">Revenus NOWPayments ($0.99/ép)</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- My Stories Management Table -->
-        <div class="card-box mt-6">
-          <div class="card-box-header">
-            <h3 class="card-box-title"><i class="fa-solid fa-books"></i> <span data-i18n="my_stories_title">Mes Récits Inavouables</span></h3>
-            <button class="btn-sm btn-ghost" id="refreshCreatorStoriesBtn">
-              <i class="fa-solid fa-rotate-right"></i> <span data-i18n="refresh">Rafraîchir</span>
-            </button>
-          </div>
-          
-          <div id="creatorStoriesList" class="creator-stories-container">
-            <!-- Dynamic rows -->
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- TAB 4 : STORY READER VIEW -->
-    <!-- ========================================== -->
-    <section id="tabReader" class="content-tab">
-      <div class="reader-container">
-        
-        <!-- Reader Toolbar -->
-        <div class="reader-toolbar">
-          <button class="btn-back" id="readerBackBtn">
-            <i class="fa-solid fa-arrow-left"></i> <span data-i18n="reader_back">Retour aux récits</span>
-          </button>
-
-          <div class="reader-controls">
-            <button class="btn-icon" id="fontDecreaseBtn" title="Réduire la taille de police">A-</button>
-            <button class="btn-icon" id="fontIncreaseBtn" title="Agrandir la taille de police">A+</button>
-            <button class="btn-icon" id="shareStoryBtn" title="Partager">
-              <i class="fa-solid fa-share-nodes"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Story Meta Header -->
-        <div class="reader-story-meta">
-          <div class="reader-cover-thumb">
-            <img id="readerCoverImg" src="" alt="Cover">
-          </div>
-          <div class="reader-meta-text">
-            <span class="genre-tag" id="readerGenre">Cyberpunk</span>
-            <h1 class="reader-story-title" id="readerStoryTitle">Titre du récit</h1>
-            <p class="reader-author"><i class="fa-solid fa-pen-fancy"></i> Par <span id="readerAuthorName">Auteur</span></p>
-            <p class="reader-desc" id="readerDesc"></p>
-          </div>
-        </div>
-
-        <!-- Episodes pills selector -->
-        <div class="episodes-selector-wrapper">
-          <div class="episodes-selector-label" data-i18n="choose_episode">Sélectionner un Épisode :</div>
-          <div class="episodes-pills-row" id="episodesPillsContainer">
-            <!-- Injected dynamically -->
-          </div>
-        </div>
-
-        <!-- EPISODE READING PAPER -->
-        <div class="reader-paper" id="readerPaper">
-          <div class="episode-title-bar">
-            <span class="ep-num-badge" id="readerEpNumberBadge">Épisode 1</span>
-            <h2 class="ep-title" id="readerEpTitle">Titre de l'épisode</h2>
-          </div>
-
-          <!-- FREE EPISODE BODY (Accessible sans compte) -->
-          <article class="reader-body" id="readerContentBody">
-            <!-- Content paragraphs -->
-          </article>
-
-          <!-- LOCKED EPISODE PAYWALL (NOWPayments) -->
-          <div class="paywall-lock-box" id="readerPaywallBox" style="display:none;">
-            <div class="paywall-icon">
-              <i class="fa-solid fa-lock"></i>
-            </div>
-            <div class="paywall-badge" data-i18n="paywall_badge">CHAPITRE VERROUILLÉ</div>
-            <h3 class="paywall-heading" data-i18n="paywall_title">La Suite Est Inavouable</h3>
-            <p class="paywall-desc" data-i18n="paywall_desc">
-              L'épisode 1 était offert. Soutenez l'auteur pour débloquer immédiatement ce chapitre sans inscription.
-            </p>
-            <div class="paywall-price-tag">
-              <span class="price-currency">$</span><span class="price-amount" id="paywallPriceVal">0.99</span>
-            </div>
-
-            <!-- NOWPayments Action Button -->
-            <button class="btn btn-nowpayments" id="nowPaymentsPayBtn">
-              <i class="fa-brands fa-bitcoin"></i> <span data-i18n="pay_nowpayments_btn">Payer $0.99 avec NOWPayments</span>
-            </button>
-
-            <!-- Accepted Crypto Icons -->
-            <div class="supported-cryptos">
-              <span>Règlement crypto décentralisé et anonyme :</span>
-              <div class="crypto-icons-row">
-                <span class="crypto-badge"><i class="fa-brands fa-bitcoin"></i> BTC</span>
-                <span class="crypto-badge"><i class="fa-brands fa-ethereum"></i> ETH</span>
-                <span class="crypto-badge">USDT (TRC20)</span>
-                <span class="crypto-badge">SOL</span>
-                <span class="crypto-badge">LTC</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Navigation Prev / Next -->
-          <div class="reader-bottom-nav">
-            <button class="btn btn-outline" id="readerPrevEpBtn" disabled>
-              <i class="fa-solid fa-arrow-left"></i> <span data-i18n="prev_episode">Épisode Précédent</span>
-            </button>
-            <button class="btn btn-primary" id="readerNextEpBtn">
-              <span data-i18n="next_episode">Épisode Suivant</span> <i class="fa-solid fa-arrow-right"></i>
-            </button>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
+    </div>
 
   </main>
 
-  <!-- ========================================== -->
-  <!-- MODALS -->
-  <!-- ========================================== -->
+  <!-- ======================================================== -->
+  <!-- FOOTER (Identique à l'ancien Fallen Stories) -->
+  <!-- ======================================================== -->
+  <footer class="border-t border-purple-950/60 bg-brand-950/90 py-12 mt-auto text-sm text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <!-- Brand Info -->
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-700 to-amber-500 flex items-center justify-center text-white text-sm">
+            <i class="fa-solid fa-fire-flame-curved"></i>
+          </div>
+          <div>
+            <span class="font-serif font-bold text-gray-200 block">FALLEN STORIES</span>
+            <span class="text-xs text-gray-400">Plateforme littéraire sombre, immersive et monétisée</span>
+          </div>
+        </div>
 
-  <!-- AUTH MODAL (CREATORS ONLY) -->
-  <div class="modal-overlay" id="authModal">
-    <div class="modal-card">
-      <button class="modal-close" id="closeAuthModalBtn"><i class="fa-solid fa-xmark"></i></button>
-      
-      <div class="modal-header-branding">
-        <div class="brand-logo-modal"><i class="fa-solid fa-feather-pointed"></i></div>
-        <h2>RÉCITS <span class="accent-glow">INAVOUABLES</span></h2>
-        <p class="creator-notice" data-i18n="auth_modal_creator_only">
-          <i class="fa-solid fa-circle-info"></i> L'inscription est réservée aux <strong>Auteurs & Créateurs</strong>.<br>
-          Les lecteurs peuvent lire et débloquer les récits librement sans compte.
-        </p>
+        <!-- Links -->
+        <div class="flex flex-wrap items-center justify-center gap-6 text-sm">
+          <a href="index.html" class="hover:text-purple-400 transition-colors">Explorer</a>
+          <a href="soumettre.html" class="text-amber-400 hover:text-amber-300 font-semibold transition-colors flex items-center gap-1.5">
+            <i class="fa-solid fa-feather-pointed text-xs"></i>
+            <span>Devenir Auteur (60% Ventes)</span>
+          </a>
+          <span class="text-xs bg-purple-950/80 px-2.5 py-1 rounded border border-purple-900/40 text-purple-300 font-mono">
+            Supabase DB • USDT TRC-20
+          </span>
+        </div>
+
       </div>
 
-      <!-- Auth Tabs -->
-      <div class="auth-tabs">
-        <button class="auth-tab active" id="tabLoginBtn" data-i18n="tab_login_creator">Connexion Créateur</button>
-        <button class="auth-tab" id="tabSignupBtn" data-i18n="tab_signup_creator">Inscription Créateur</button>
+      <div class="border-t border-purple-950/40 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-600 gap-2">
+        <p>&copy; 2026 Fallen Stories. Tous droits réservés.</p>
+        <p>Les histoires proposées respectent la législation en vigueur (+18 ans).</p>
       </div>
-
-      <!-- Login Form -->
-      <form id="loginForm" class="auth-form active">
-        <div class="form-group">
-          <label><i class="fa-solid fa-envelope"></i> Email du Créateur</label>
-          <input type="email" id="loginEmail" required placeholder="auteur@recits-inavouables.com">
-        </div>
-        <div class="form-group">
-          <label><i class="fa-solid fa-key"></i> <span data-i18n="form_password">Mot de passe</span></label>
-          <input type="password" id="loginPassword" required placeholder="••••••••">
-        </div>
-        <button type="submit" class="btn btn-primary btn-block" id="submitLoginBtn">
-          <i class="fa-solid fa-right-to-bracket"></i> <span data-i18n="btn_login_submit">Accéder à mon Studio Créateur</span>
-        </button>
-      </form>
-
-      <!-- Signup Form (Creator Account) -->
-      <form id="signupForm" class="auth-form">
-        <div class="form-group">
-          <label><i class="fa-solid fa-user-pen"></i> <span data-i18n="form_author_pseudonym">Nom de plume / Pseudonyme *</span></label>
-          <input type="text" id="signupUsername" required placeholder="ex: L'Ombre d'Éros">
-        </div>
-        <div class="form-group">
-          <label><i class="fa-solid fa-envelope"></i> Email du Créateur *</label>
-          <input type="email" id="signupEmail" required placeholder="auteur@recits-inavouables.com">
-        </div>
-        <div class="form-group">
-          <label><i class="fa-solid fa-key"></i> <span data-i18n="form_password">Mot de passe *</span></label>
-          <input type="password" id="signupPassword" required minlength="6" placeholder="Minimum 6 caractères">
-        </div>
-        <div class="form-group">
-          <label><i class="fa-solid fa-tags"></i> <span data-i18n="form_primary_genre">Genre de prédilection</span></label>
-          <select id="signupPrimaryGenre">
-            <option value="Érotisme">Érotisme</option>
-            <option value="Tabou">Tabou</option>
-            <option value="Dark Fantasy">Dark Fantasy</option>
-            <option value="Cyberpunk">Cyberpunk</option>
-            <option value="Sci-Fi Thriller">Sci-Fi Thriller</option>
-            <option value="Horreur / Occulte">Horreur / Occulte</option>
-            <option value="Dystopie">Dystopie</option>
-          </select>
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-block" id="submitSignupBtn">
-          <i class="fa-solid fa-feather-pointed"></i> <span data-i18n="btn_signup_submit">Créer mon Compte Créateur</span>
-        </button>
-      </form>
-
-      <!-- Quick Switch for Demo / Testing Creator Studio -->
-      <div class="demo-role-quickbar">
-        <span data-i18n="quick_test_label">Test instantané sans mot de passe :</span>
-        <button class="btn-chip active-chip" id="demoCreatorBtn">
-          <i class="fa-solid fa-wand-magic-sparkles"></i> Activer un profil Créateur Démo
-        </button>
-      </div>
-
     </div>
-  </div>
+  </footer>
 
-  <!-- NEW STORY MODAL (Creator Dashboard) -->
-  <div class="modal-overlay" id="newStoryModal">
-    <div class="modal-card wide">
-      <button class="modal-close" id="closeNewStoryModalBtn"><i class="fa-solid fa-xmark"></i></button>
-      <div class="modal-title-row">
-        <i class="fa-solid fa-feather-pointed text-purple"></i>
-        <h2 data-i18n="modal_new_story_title">Publier un Nouveau Récit Inavouable</h2>
-      </div>
-      <p class="modal-subtext" data-i18n="modal_new_story_desc">Rédigez votre œuvre. Elle sera enregistrée et soumise à vérification manuelle.</p>
+  <!-- ======================================================== -->
+  <!-- LOGIQUE SUPABASE JS DYNAMIQUE -->
+  <!-- ======================================================== -->
+  <script>
+    // ========================================================
+    // CONFIGURATION SUPABASE (PLACEHOLDERS À REMPLACER)
+    // ========================================================
+    const SUPABASE_URL = "YOUR_SUPABASE_URL";
+    const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
 
-      <form id="newStoryForm" class="mt-4">
-        <div class="form-group">
-          <label><i class="fa-solid fa-heading"></i> <span data-i18n="form_story_title">Titre du Récit *</span></label>
-          <input type="text" id="newStoryTitle" required placeholder="ex: Les Heures Interdites">
-        </div>
+    // Client Supabase initialisé (utilise les placeholders ou fallback vers config existante)
+    const effectiveUrl = (SUPABASE_URL && SUPABASE_URL !== "YOUR_SUPABASE_URL") 
+      ? SUPABASE_URL 
+      : "https://znwcmypjlpgdsmpoaclc.supabase.co";
 
-        <div class="form-row">
-          <div class="form-group">
-            <label><i class="fa-solid fa-tags"></i> <span data-i18n="form_story_genre">Genre *</span></label>
-            <select id="newStoryGenre" required>
-              <option value="Érotisme">Érotisme</option>
-              <option value="Tabou">Tabou</option>
-              <option value="Cyberpunk">Cyberpunk</option>
-              <option value="Dark Fantasy">Dark Fantasy</option>
-              <option value="Sci-Fi Thriller">Sci-Fi Thriller</option>
-              <option value="Horreur / Occulte">Horreur / Occulte</option>
-              <option value="Dystopie">Dystopie</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label><i class="fa-solid fa-user-pen"></i> <span data-i18n="form_author_name">Nom d'auteur affiché</span></label>
-            <input type="text" id="newStoryAuthorName" placeholder="Votre pseudonyme">
-          </div>
-        </div>
+    const effectiveKey = (SUPABASE_ANON_KEY && SUPABASE_ANON_KEY !== "YOUR_SUPABASE_ANON_KEY") 
+      ? SUPABASE_ANON_KEY 
+      : "sb_publishable_FYY7JDn0r8794PNvmkOagg_elygqqob";
 
-        <div class="form-group">
-          <label><i class="fa-solid fa-image"></i> <span data-i18n="form_cover_url">URL de l'image de couverture</span></label>
-          <input type="url" id="newStoryCoverUrl" placeholder="https://images.unsplash.com/photo-...">
-          <div class="preset-covers">
-            <span class="preset-label" data-i18n="preset_covers">Presets sombres & suggestifs :</span>
-            <button type="button" class="preset-tag" data-url="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80">Cyberpunk Neon</button>
-            <button type="button" class="preset-tag" data-url="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80">Gothique Sombre</button>
-            <button type="button" class="preset-tag" data-url="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80">Sensuel Ombre</button>
-            <button type="button" class="preset-tag" data-url="https://images.unsplash.com/photo-1519638399535-1b036603ac77?auto=format&fit=crop&w=800&q=80">Nuit Interdite</button>
-          </div>
-        </div>
+    const supabase = window.supabase.createClient(effectiveUrl, effectiveKey);
 
-        <!-- IMPORT DE FICHIER LOURD (JUSQU'À 50MB, DRAG & DROP, STATS, PREVIEW) -->
-        <div class="form-group">
-          <label class="file-drop-label">
-            <i class="fa-solid fa-file-import text-purple"></i> 
-            <span>Manuscrit & Contenu du Récit (Jusqu'à 50MB) *</span>
-          </label>
+    // État local des histoires pour recherche et filtrage fluide
+    let allStories = [];
+    let currentGenre = "all";
+    let searchQuery = "";
 
-          <div class="file-drop-zone" id="storyDropZone">
-            <input type="file" id="storyFileInput" class="file-input-hidden" accept=".txt,.md,.json,.docx,.pdf">
-            <div class="drop-zone-content" id="dropZonePrompt">
-              <div class="upload-icon-circle">
-                <i class="fa-solid fa-cloud-arrow-up"></i>
-              </div>
-              <div class="drop-main-text">Glissez votre fichier d'histoire ici ou cliquez pour parcourir</div>
-              <div class="drop-sub-text">TXT, MD, JSON, DOCX acceptés — Jusqu'à 50MB</div>
+    // Image de couverture par défaut si manquante
+    const DEFAULT_COVER = "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80";
+
+    const storiesGrid = document.getElementById("storiesGrid");
+    const storiesCount = document.getElementById("storiesCount");
+    const searchInput = document.getElementById("searchInput");
+    const genreBtns = document.querySelectorAll(".genre-btn");
+
+    // ========================================================
+    // RÉCUPÉRATION DYNAMIQUE DEPUIS SUPABASE
+    // ========================================================
+    async function loadStories() {
+      try {
+        storiesCount.textContent = "Chargement...";
+
+        // MISSION 2 : supabase.from('stories').select('*').order('created_at', { ascending: false })
+        const { data, error } = await supabase
+          .from('stories')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (error) {
+          throw error;
+        }
+
+        allStories = data || [];
+        renderGrid();
+
+      } catch (err) {
+        console.error("Erreur récupération Supabase :", err);
+        storiesGrid.innerHTML = `
+          <div class="col-span-full py-16 text-center bg-brand-900/30 border border-red-500/20 rounded-3xl p-8">
+            <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-red-950/60 border border-red-500/30 flex items-center justify-center text-red-400 text-xl">
+              <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
+            <h3 class="font-serif text-xl font-bold text-white mb-2">Erreur de Connexion à la Table Stories</h3>
+            <p class="text-sm text-gray-400 max-w-md mx-auto mb-6">
+              Impossible d'interroger la table Supabase. Assurez-vous d'avoir configuré vos clés SUPABASE_URL et SUPABASE_ANON_KEY.
+            </p>
+            <p class="text-xs text-red-400/80 font-mono mb-4">${err.message || ""}</p>
+            <button onclick="loadStories()" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition-all">
+              <i class="fa-solid fa-rotate-right mr-1"></i> Réessayer
+            </button>
+          </div>
+        `;
+        storiesCount.textContent = "0 récit";
+      }
+    }
+
+    // ========================================================
+    // RENDU DE LA GRILLE D'HISTOIRES
+    // ========================================================
+    function renderGrid() {
+      let filtered = allStories;
+
+      // Filtre de genre
+      if (currentGenre !== "all") {
+        filtered = filtered.filter(s => s.genre && s.genre.toLowerCase() === currentGenre.toLowerCase());
+      }
+
+      // Filtre de recherche
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase();
+        filtered = filtered.filter(s => 
+          (s.title && s.title.toLowerCase().includes(query)) ||
+          (s.author_name && s.author_name.toLowerCase().includes(query)) ||
+          (s.genre && s.genre.toLowerCase().includes(query))
+        );
+      }
+
+      storiesCount.textContent = `${filtered.length} récit${filtered.length > 1 ? 's' : ''}`;
+
+      // MISSION 2 : Si 0 rows, affiche "Aucune histoire pour le moment"
+      if (filtered.length === 0) {
+        storiesGrid.innerHTML = `
+          <div class="col-span-full py-16 px-4 text-center bg-brand-900/30 border border-purple-900/30 rounded-3xl">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-purple-950/60 border border-purple-800/40 flex items-center justify-center text-purple-400 text-2xl shadow-inner">
+              <i class="fa-solid fa-book-open"></i>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-white mb-2">Aucune histoire pour le moment</h3>
+            <p class="text-gray-400 max-w-md mx-auto text-sm leading-relaxed mb-6">
+              La bibliothèque est encore vierge. Soyez le premier auteur à proposer votre roman ou nouvelle et touchez 60% de chaque vente en USDT !
+            </p>
+            <a href="soumettre.html" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold text-amber-300 bg-amber-500/10 border border-amber-500/40 hover:bg-amber-500/20 transition-all shadow-lg shadow-amber-950/30">
+              <i class="fa-solid fa-feather-pointed"></i>
+              <span>Soumettre la Première Histoire (60% Auteur)</span>
+            </a>
+          </div>
+        `;
+        return;
+      }
+
+      // MISSION 2 : Chaque carte affiche cover_url, title, genre, author_name, et un badge "60% auteur" si is_user_submitted = true
+      storiesGrid.innerHTML = filtered.map(story => {
+        const cover = story.cover_url || DEFAULT_COVER;
+        const title = escapeHtml(story.title || "Histoire Sans Titre");
+        const author = escapeHtml(story.author_name || "Auteur Inavouable");
+        const genre = escapeHtml(story.genre || "Romance");
+        const isUserSubmitted = Boolean(story.is_user_submitted);
+
+        return `
+          <article class="group bg-brand-900/50 backdrop-blur-sm border border-purple-900/30 hover:border-purple-600/60 rounded-2xl overflow-hidden shadow-xl shadow-black/40 hover:shadow-purple-950/30 transition-all duration-300 flex flex-col">
             
-            <!-- Progress Bar pour fichiers > 1MB -->
-            <div class="upload-progress-container" id="uploadProgressBox" style="display:none;">
-              <div class="progress-bar-wrap">
-                <div class="progress-bar-fill" id="uploadProgressBar" style="width: 0%;"></div>
-              </div>
-              <div class="progress-label" id="uploadProgressText">Lecture du fichier volumineux... 0%</div>
-            </div>
-          </div>
+            <!-- Cover Box -->
+            <div class="relative h-60 w-full overflow-hidden bg-brand-950">
+              <img 
+                src="${cover}" 
+                alt="${title}" 
+                loading="lazy" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                onerror="this.src='${DEFAULT_COVER}'"
+              >
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-950 via-transparent to-black/30"></div>
+              
+              <!-- Genre badge -->
+              <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-brand-950/80 backdrop-blur-md border border-purple-700/50 text-purple-300 shadow-sm">
+                ${genre}
+              </span>
 
-          <!-- File Stats & Preview Card -->
-          <div class="file-imported-card" id="fileImportedCard" style="display:none;">
-            <div class="file-imported-header">
-              <div class="file-meta-col">
-                <div class="file-name-row">
-                  <i class="fa-solid fa-file-lines text-purple"></i>
-                  <span class="file-name" id="importedFileName">histoire.docx</span>
+              <!-- MISSION 2 : Badge "60% auteur" si is_user_submitted = true -->
+              ${isUserSubmitted ? `
+                <span class="absolute top-3.5 right-3.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/90 text-brand-950 shadow-md shadow-amber-950/40">
+                  <i class="fa-solid fa-award text-xs"></i>
+                  <span>60% auteur</span>
+                </span>
+              ` : ''}
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div>
+                <h3 class="font-serif text-lg sm:text-xl font-bold text-white group-hover:text-purple-300 transition-colors line-clamp-2 leading-snug">
+                  ${title}
+                </h3>
+                
+                <div class="flex items-center gap-2 mt-2 text-xs font-medium text-purple-400">
+                  <i class="fa-solid fa-feather-pointed"></i>
+                  <span>${author}</span>
                 </div>
-                <div class="file-stats-row">
-                  <span class="stat-pill"><i class="fa-solid fa-hard-drive"></i> <strong id="importedFileSize">0 MB</strong></span>
-                  <span class="stat-pill"><i class="fa-solid fa-align-left"></i> <strong id="importedWordCount">0</strong> mots</span>
-                  <span class="stat-pill"><i class="fa-solid fa-font"></i> <strong id="importedCharCount">0</strong> caractères</span>
-                </div>
               </div>
-              <button type="button" class="btn-sm btn-ghost btn-danger-hover" id="removeImportedFileBtn" title="Remplacer le fichier">
-                <i class="fa-solid fa-trash-can"></i> Remplacer
-              </button>
-            </div>
 
-            <!-- Preview 500 chars -->
-            <div class="file-preview-box">
-              <div class="preview-title-row">
-                <span><i class="fa-solid fa-eye text-cyan"></i> Aperçu des 500 premiers caractères :</span>
-                <button type="button" class="btn-link-xs" id="toggleFullPreviewBtn">Voir tout</button>
+              <!-- Footer with Action Button -->
+              <div class="pt-4 border-t border-purple-900/30 flex items-center justify-between">
+                <span class="text-xs text-gray-500 flex items-center gap-1">
+                  <i class="fa-solid fa-circle-check text-green-500 text-[10px]"></i> Vérifié
+                </span>
+
+                <button 
+                  onclick="alert('Lecture du récit : ' + ${JSON.stringify(title)} + '\\nÉpisode 1 accessible sans inscription.')"
+                  class="px-4 py-2 rounded-xl text-xs font-bold text-white bg-purple-900/50 hover:bg-purple-600 border border-purple-700/50 transition-all flex items-center gap-1.5 shadow-sm"
+                >
+                  <span>Lire</span>
+                  <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </button>
               </div>
-              <div class="preview-text" id="importedPreviewText">...</div>
+
             </div>
-          </div>
 
-          <div class="file-error-msg" id="fileErrorMsg" style="display:none;"></div>
-        </div>
+          </article>
+        `;
+      }).join("");
+    }
 
-        <div class="modal-footer-actions">
-          <button type="button" class="btn btn-ghost" id="cancelNewStoryBtn" data-i18n="cancel">Annuler</button>
-          <button type="submit" class="btn btn-primary" id="submitNewStoryBtn">
-            <i class="fa-solid fa-cloud-arrow-up"></i> <span data-i18n="btn_create_story">Soumettre le Récit</span>
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
+    // Protection XSS minimale pour les données textes
+    function escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
 
-  <!-- NEW EPISODE MODAL (Creator Dashboard) -->
-  <div class="modal-overlay" id="newEpisodeModal">
-    <div class="modal-card wide">
-      <button class="modal-close" id="closeNewEpisodeModalBtn"><i class="fa-solid fa-xmark"></i></button>
-      <div class="modal-title-row">
-        <i class="fa-solid fa-file-circle-plus text-accent"></i>
-        <h2 data-i18n="modal_new_episode_title">Ajouter un Épisode</h2>
-      </div>
-      <p class="modal-subtext" data-i18n="modal_new_episode_desc">Enregistrez un nouveau chapitre dans la table Supabase `episodes`.</p>
+    // ========================================================
+    // GESTION DES FILTRES ET RECHERCHE
+    // ========================================================
+    searchInput.addEventListener("input", (e) => {
+      searchQuery = e.target.value.trim();
+      renderGrid();
+    });
 
-      <form id="newEpisodeForm" class="mt-4">
-        <div class="form-group">
-          <label><i class="fa-solid fa-book"></i> <span data-i18n="form_select_story">Récit cible *</span></label>
-          <select id="newEpisodeStorySelect" required>
-            <option value="">-- Choisir un récit --</option>
-          </select>
-        </div>
+    genreBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        genreBtns.forEach(b => {
+          b.className = "genre-btn px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-brand-950 text-gray-400 hover:text-white border border-purple-900/30 hover:border-purple-600 transition-all";
+        });
+        btn.className = "genre-btn active px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap bg-purple-600 text-white transition-all shadow-sm";
+        currentGenre = btn.getAttribute("data-genre");
+        renderGrid();
+      });
+    });
 
-        <div class="form-row">
-          <div class="form-group">
-            <label><i class="fa-solid fa-list-ol"></i> <span data-i18n="form_ep_number">Numéro d'épisode *</span></label>
-            <input type="number" id="newEpisodeNumber" min="1" max="100" value="1" required>
-          </div>
-          <div class="form-group">
-            <label><i class="fa-solid fa-money-bill-wave"></i> <span data-i18n="form_ep_price">Prix ($)</span></label>
-            <input type="number" id="newEpisodePrice" step="0.01" value="0.99" required>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label><i class="fa-solid fa-heading"></i> <span data-i18n="form_ep_title">Titre de l'épisode *</span></label>
-          <input type="text" id="newEpisodeTitle" required placeholder="ex: Chapitre 1 : Le Premier Regard">
-        </div>
-
-        <!-- Is Free Toggle -->
-        <div class="form-group checkbox-group">
-          <label class="checkbox-container">
-            <input type="checkbox" id="newEpisodeIsFree">
-            <span class="checkmark"></span>
-            <span class="checkbox-text">
-              <strong data-i18n="form_is_free_label">Épisode Gratuit (Accès libre)</strong>
-              <small data-i18n="form_is_free_help">Règle de la plateforme : L'épisode 1 doit être gratuit. Les épisodes 2+ sont par défaut payants ($0.99 via NOWPayments).</small>
-            </span>
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label><i class="fa-solid fa-align-left"></i> <span data-i18n="form_ep_content">Texte complet du chapitre *</span></label>
-          <textarea id="newEpisodeContent" rows="8" required placeholder="Rédigez le contenu inavouable de votre chapitre ici..."></textarea>
-        </div>
-
-        <div class="modal-footer-actions">
-          <button type="button" class="btn btn-ghost" id="cancelNewEpisodeBtn" data-i18n="cancel">Annuler</button>
-          <button type="submit" class="btn btn-primary" id="submitNewEpisodeBtn">
-            <i class="fa-solid fa-check"></i> <span data-i18n="btn_publish_episode">Enregistrer l'épisode</span>
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- NOWPAYMENTS CHECKOUT MODAL -->
-  <div class="modal-overlay" id="nowPaymentsModal">
-    <div class="modal-card">
-      <button class="modal-close" id="closeNowPaymentsModalBtn"><i class="fa-solid fa-xmark"></i></button>
-      
-      <div class="nowpayments-brand-bar">
-        <i class="fa-solid fa-shield-cat"></i>
-        <span>NOWPAYMENTS CRYPTO GATEWAY</span>
-      </div>
-
-      <div class="checkout-summary">
-        <h3 id="checkoutStoryTitle">Récit Inavouable</h3>
-        <div class="checkout-item-title" id="checkoutEpTitle">Épisode 2</div>
-        <div class="checkout-amount-box">
-          <span class="currency">$</span>
-          <span class="amount" id="checkoutPriceVal">0.99</span>
-          <span class="usd-badge">USD</span>
-        </div>
-      </div>
-
-      <div class="payment-methods-select">
-        <label data-i18n="choose_crypto">Choisissez votre cryptomonnaie :</label>
-        <div class="crypto-radio-list">
-          <label class="crypto-radio-card selected">
-            <input type="radio" name="cryptoChoice" value="usdt" checked>
-            <div class="crypto-info">
-              <span class="crypto-name">USDT (Tron/TRC20)</span>
-              <span class="crypto-rate">~ 0.99 USDT (Recommandé)</span>
-            </div>
-            <i class="fa-solid fa-circle-check check-icon"></i>
-          </label>
-          <label class="crypto-radio-card">
-            <input type="radio" name="cryptoChoice" value="btc">
-            <div class="crypto-info">
-              <span class="crypto-name">Bitcoin (BTC)</span>
-              <span class="crypto-rate">~ 0.000015 BTC</span>
-            </div>
-            <i class="fa-solid fa-circle-check check-icon"></i>
-          </label>
-          <label class="crypto-radio-card">
-            <input type="radio" name="cryptoChoice" value="eth">
-            <div class="crypto-info">
-              <span class="crypto-name">Ethereum (ETH)</span>
-              <span class="crypto-rate">~ 0.00035 ETH</span>
-            </div>
-            <i class="fa-solid fa-circle-check check-icon"></i>
-          </label>
-          <label class="crypto-radio-card">
-            <input type="radio" name="cryptoChoice" value="sol">
-            <div class="crypto-info">
-              <span class="crypto-name">Solana (SOL)</span>
-              <span class="crypto-rate">~ 0.007 SOL</span>
-            </div>
-            <i class="fa-solid fa-circle-check check-icon"></i>
-          </label>
-        </div>
-      </div>
-
-      <div class="modal-footer-actions column-actions">
-        <button class="btn btn-nowpayments btn-block" id="confirmNowPaymentsRedirectBtn">
-          <i class="fa-solid fa-arrow-up-right-from-square"></i> <span data-i18n="open_nowpayments_btn">Ouvrir NOWPayments.io ($0.99)</span>
-        </button>
-        </div>
-
-      <p class="crypto-security-note">
-        <i class="fa-solid fa-user-secret"></i> Aucun compte requis pour les lecteurs. Paiement crypto direct, anonyme et instantané via NOWPayments.
-      </p>
-    </div>
-  </div>
-
-  <!-- SQL SCHEMA VIEWER MODAL -->
-  <div class="modal-overlay" id="sqlSchemaModal">
-    <div class="modal-card extra-wide">
-      <button class="modal-close" id="closeSqlSchemaModalBtn"><i class="fa-solid fa-xmark"></i></button>
-      <div class="modal-title-row">
-        <i class="fa-solid fa-database text-purple"></i>
-        <h2>Requêtes SQL pour Supabase</h2>
-      </div>
-      <p class="modal-subtext">
-        Copiez et exécutez ce script dans l'éditeur SQL de votre projet Supabase (<code>https://znwcmypjlpgdsmpoaclc.supabase.co</code>). Aucune histoire de démonstration n'est injectée : la plateforme est vierge pour vos créateurs.
-      </p>
-
-      <div class="sql-code-container">
-        <button class="btn-copy-sql" id="copySqlBtn">
-          <i class="fa-solid fa-copy"></i> <span id="copyBtnText">Copier le script SQL</span>
-        </button>
-        <pre><code id="sqlCodeBlock"></code></pre>
-      </div>
-    </div>
-  </div>
-
-  <!-- FULL MANUSCRIPT PREVIEW MODAL -->
-  <div class="modal-overlay" id="fullPreviewModal">
-    <div class="modal-card wide">
-      <button class="modal-close" id="closeFullPreviewModalBtn"><i class="fa-solid fa-xmark"></i></button>
-      <div class="modal-title-row">
-        <i class="fa-solid fa-book-open-reader text-purple"></i>
-        <h2>Aperçu du Manuscrit Complet</h2>
-      </div>
-      <p class="modal-subtext" id="fullPreviewMeta">Texte intégral importé</p>
-
-      <div class="full-preview-container">
-        <pre id="fullPreviewTextBody"></pre>
-      </div>
-
-      <div class="modal-footer-actions">
-        <button type="button" class="btn btn-primary" id="confirmFullPreviewCloseBtn">Fermer l'Aperçu</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- TOAST ALERTS -->
-  <div id="toastContainer" class="toast-container"></div>
-
-  <!-- App Script -->
+    // Initialisation
+    document.addEventListener("DOMContentLoaded", loadStories);
+  </script>
 </body>
 </html>

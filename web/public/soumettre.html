@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Fallen Stories — Soumettre un Récit (Programme Auteurs 60%)</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              950: '#06040a',
+              900: '#0d0914',
+              800: '#171124',
+              700: '#231a38',
+              accent: '#a855f7',
+              gold: '#f59e0b',
+              amber: '#d97706'
+            }
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            body: ['Lora', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Supabase JS Client v2 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-brand-950 text-gray-200 font-sans min-h-screen flex flex-col antialiased selection:bg-purple-600 selection:text-white">
+
+  <!-- ======================================================== -->
+  <!-- NAVIGATION HEADER -->
+  <!-- ======================================================== -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-brand-950/80 border-b border-purple-900/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 via-purple-600 to-amber-500 flex items-center justify-center text-white shadow-lg shadow-purple-950/60 group-hover:scale-105 transition-transform duration-300">
+          <i class="fa-solid fa-fire-flame-curved text-lg"></i>
+        </div>
+        <div>
+          <span class="font-serif tracking-wider font-bold text-xl text-white block leading-tight">
+            FALLEN <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-amber-400">STORIES</span>
+          </span>
+          <span class="text-[10px] tracking-widest text-purple-400/80 uppercase font-semibold block">Programme Créateurs & Monétisation</span>
+        </div>
+      </a>
+
+      <nav class="flex items-center gap-4">
+        <a href="index.html" class="text-sm font-medium text-gray-400 hover:text-white transition-colors flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5">
+          <i class="fa-solid fa-compass"></i>
+          <span>Explorer les récits</span>
+        </a>
+        <a href="soumettre.html" class="text-sm font-medium text-amber-300 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20 transition-all flex items-center gap-2 px-4 py-2 rounded-lg shadow-sm shadow-amber-950/40">
+          <i class="fa-solid fa-feather-pointed"></i>
+          <span>Soumettre un récit</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- HERO BANNER -->
+  <!-- ======================================================== -->
+  <section class="relative overflow-hidden py-12 lg:py-16 border-b border-purple-950/60 bg-gradient-to-b from-brand-900 via-brand-950 to-brand-950">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-purple-900/20 via-transparent to-transparent pointer-events-none"></div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-amber-500/10 border border-amber-500/30 text-amber-300 mb-6 shadow-inner">
+        <i class="fa-solid fa-sack-dollar text-amber-400"></i>
+        <span>Partage de Revenus : 60% Auteur • 40% Plateforme • Paiement USDT TRC-20</span>
+      </div>
+
+      <h1 class="font-serif text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+        Publiez Votre Manuscrit.<br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-amber-300">
+          Touchez 60% de Chaque Vente.
+        </span>
+      </h1>
+
+      <p class="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+        Soumettez votre Épisode 1 complet (minimum 8 000 mots). Dès validation par notre comité de lecture, votre récit intègre le catalogue officiel et vos royalties sont versées directement sur votre adresse USDT TRC20.
+      </p>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- MAIN SUBMISSION FORM -->
+  <!-- ======================================================== -->
+  <main class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-10 lg:py-14">
+    
+    <!-- NOTIFICATION ALERT BOX -->
+    <div id="alertBox" class="hidden mb-8 p-5 rounded-2xl border transition-all duration-300">
+      <div class="flex items-start gap-4">
+        <div id="alertIcon" class="text-2xl mt-0.5"></div>
+        <div class="flex-1">
+          <h4 id="alertTitle" class="font-bold text-base"></h4>
+          <p id="alertMessage" class="text-sm mt-1 leading-relaxed"></p>
+        </div>
+        <button id="alertCloseBtn" type="button" class="text-gray-400 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <form id="submissionForm" class="bg-brand-900/60 backdrop-blur-xl border border-purple-900/40 rounded-3xl p-6 sm:p-10 shadow-2xl shadow-purple-950/50 space-y-8">
+      
+      <!-- SECTION 1 : HISTOIRE -->
+      <div>
+        <div class="flex items-center gap-3 border-b border-purple-900/30 pb-4 mb-6">
+          <div class="w-8 h-8 rounded-lg bg-purple-900/40 text-purple-400 flex items-center justify-center font-bold text-sm">1</div>
+          <h2 class="font-serif text-xl font-bold text-white tracking-wide">Détails de l'Œuvre</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <!-- Titre -->
+          <div class="sm:col-span-2">
+            <label for="storyTitle" class="block text-sm font-semibold text-gray-300 mb-2">
+              Titre du Récit <span class="text-purple-400">*</span>
+            </label>
+            <div class="relative">
+              <input 
+                type="text" 
+                id="storyTitle" 
+                name="title" 
+                required 
+                placeholder="Ex : Les Nuits Blanches du Quatorzième Étage"
+                class="w-full bg-brand-950/80 border border-purple-900/40 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+              >
+            </div>
+          </div>
+
+          <!-- Genre -->
+          <div>
+            <label for="storyGenre" class="block text-sm font-semibold text-gray-300 mb-2">
+              Genre Littéraire <span class="text-purple-400">*</span>
+            </label>
+            <div class="relative">
+              <select 
+                id="storyGenre" 
+                name="genre" 
+                required
+                class="w-full bg-brand-950/80 border border-purple-900/40 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all appearance-none cursor-pointer"
+              >
+                <option value="" disabled selected>Sélectionnez un genre...</option>
+                <option value="Romance">Romance</option>
+                <option value="Dark Romance">Dark Romance</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Billionaire">Billionaire</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-purple-400">
+                <i class="fa-solid fa-chevron-down text-xs"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nom d'auteur -->
+          <div>
+            <label for="authorName" class="block text-sm font-semibold text-gray-300 mb-2">
+              Nom d'Auteur / Pseudonyme <span class="text-purple-400">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="authorName" 
+              name="author_name" 
+              required 
+              placeholder="Ex : Adrien Valmont ou Léa S."
+              class="w-full bg-brand-950/80 border border-purple-900/40 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 2 : COORDONNÉES ET PAIEMENT -->
+      <div>
+        <div class="flex items-center gap-3 border-b border-purple-900/30 pb-4 mb-6">
+          <div class="w-8 h-8 rounded-lg bg-amber-900/40 text-amber-400 flex items-center justify-center font-bold text-sm">2</div>
+          <h2 class="font-serif text-xl font-bold text-white tracking-wide">Paiements & Contact Sécurisé</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <!-- Email de l'auteur -->
+          <div>
+            <label for="authorEmail" class="block text-sm font-semibold text-gray-300 mb-2">
+              Adresse Email de l'Auteur <span class="text-purple-400">*</span>
+            </label>
+            <input 
+              type="email" 
+              id="authorEmail" 
+              name="author_email" 
+              required 
+              placeholder="auteur@votre-domaine.com"
+              class="w-full bg-brand-950/80 border border-purple-900/40 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+            >
+            <p class="text-xs text-gray-500 mt-1.5">Pour recevoir les notifications de validation et de ventes.</p>
+          </div>
+
+          <!-- Wallet USDT TRC20 -->
+          <div>
+            <label for="authorWallet" class="block text-sm font-semibold text-amber-300 mb-2 flex items-center justify-between">
+              <span>Adresse Wallet USDT (TRC-20) <span class="text-purple-400">*</span></span>
+              <span class="text-[11px] text-amber-400/80 font-normal">Réseau TRON</span>
+            </label>
+            <div class="relative">
+              <input 
+                type="text" 
+                id="authorWallet" 
+                name="author_wallet" 
+                required 
+                placeholder="Txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                class="w-full bg-brand-950/80 border border-amber-500/40 rounded-xl px-4 py-3.5 text-amber-200 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all font-mono text-sm"
+              >
+              <div class="absolute inset-y-0 right-0 flex items-center pr-3.5 pointer-events-none text-amber-400">
+                <i class="fa-solid fa-wallet text-sm"></i>
+              </div>
+            </div>
+            <p class="text-xs text-gray-500 mt-1.5">Adresse débutant généralement par la lettre <strong class="text-gray-400">T</strong> pour recevoir vos 60% de royalties.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 3 : CONTENU ÉPISODE 1 (8 000 MOTS MIN) -->
+      <div>
+        <div class="flex items-center justify-between border-b border-purple-900/30 pb-4 mb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-pink-900/40 text-pink-400 flex items-center justify-center font-bold text-sm">3</div>
+            <h2 class="font-serif text-xl font-bold text-white tracking-wide">Contenu Épisode 1 Complet</h2>
+          </div>
+          
+          <!-- LIVE WORD COUNT BADGE -->
+          <div id="wordCountBadge" class="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold bg-gray-800 text-gray-400 border border-gray-700">
+            <i class="fa-solid fa-file-lines"></i>
+            <span id="wordCountNumber">0</span> / 8 000 mots
+          </div>
+        </div>
+
+        <!-- PROGRESS BAR -->
+        <div class="w-full bg-gray-900 rounded-full h-1.5 mb-4 overflow-hidden border border-purple-900/30">
+          <div id="wordProgressBar" class="bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 h-1.5 w-0 transition-all duration-300"></div>
+        </div>
+
+        <div class="relative">
+          <textarea 
+            id="episodeContent" 
+            name="content" 
+            rows="16" 
+            required 
+            placeholder="Collez ici le texte intégral de votre premier chapitre ou épisode (minimum 8 000 mots requis pour garantir une expérience de lecture immersive et qualitative)..."
+            class="w-full bg-brand-950/80 border border-purple-900/40 rounded-2xl p-5 text-gray-200 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all font-body text-base leading-relaxed"
+          ></textarea>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mt-2 text-xs text-gray-500">
+          <span id="wordCountStatus">Le texte doit contenir au moins 8 000 mots pour être éligible à la modération.</span>
+          <button type="button" id="pasteClipboardBtn" class="text-purple-400 hover:text-purple-300 font-medium transition-colors flex items-center gap-1">
+            <i class="fa-regular fa-paste"></i> Coller le presse-papier
+          </button>
+        </div>
+      </div>
+
+      <!-- SECTION 4 : CERTIFICATION & ACCORD -->
+      <div class="pt-2 border-t border-purple-900/30">
+        <label class="flex items-start gap-3.5 cursor-pointer group">
+          <input 
+            type="checkbox" 
+            id="certifyCheckbox" 
+            name="certify" 
+            required
+            class="mt-1 w-5 h-5 rounded border-purple-900/60 bg-brand-950 text-purple-600 focus:ring-purple-500 focus:ring-offset-brand-950 cursor-pointer"
+          >
+          <span class="text-sm text-gray-300 group-hover:text-white transition-colors leading-relaxed">
+            Je certifie sur l'honneur être <strong>majeur (+18 ans)</strong>, être l'<strong>auteur original</strong> de cette œuvre, et garantis que ce manuscrit ne comporte aucun contenu illégal (pas de mineur, pas d'inceste). J'accepte les conditions de partage de revenus (60% auteur / 40% plateforme).
+          </span>
+        </label>
+      </div>
+
+      <!-- SUBMIT BUTTON -->
+      <div class="pt-4">
+        <button 
+          type="submit" 
+          id="submitBtn"
+          class="w-full py-4 px-8 rounded-xl font-bold text-base sm:text-lg text-white bg-gradient-to-r from-purple-700 via-purple-600 to-amber-600 hover:from-purple-600 hover:via-purple-500 hover:to-amber-500 shadow-xl shadow-purple-950/60 transform active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-3 cursor-pointer"
+        >
+          <i class="fa-solid fa-paper-plane"></i>
+          <span>Soumettre l'Histoire pour Modération</span>
+        </button>
+        <p class="text-center text-xs text-gray-500 mt-3">
+          Vérification manuelle sous 24h. Vous toucherez 60% de chaque vente NOWPayments via USDT TRC20.
+        </p>
+      </div>
+
+    </form>
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- FOOTER -->
+  <!-- ======================================================== -->
+  <footer class="border-t border-purple-950/60 bg-brand-950/90 py-10 mt-auto text-sm text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-fire-flame-curved text-purple-500"></i>
+        <span class="font-serif font-bold text-gray-300">FALLEN STORIES</span>
+        <span>— Littérature Sombre, Romance & Monétisation Crypto</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="index.html" class="hover:text-gray-300 transition-colors">Accueil</a>
+        <a href="soumettre.html" class="hover:text-amber-400 transition-colors">Devenir Auteur</a>
+        <span class="text-xs bg-purple-950/80 px-2.5 py-1 rounded border border-purple-900/30 text-purple-300">USDT TRC20 • 60% Auteurs</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================================================== -->
+  <!-- LOGIQUE SUPABASE JS -->
+  <!-- ======================================================== -->
+  <script>
+    // ========================================================
+    // CONFIGURATION SUPABASE (PLACEHOLDERS À REMPLACER)
+    // ========================================================
+    const SUPABASE_URL = "YOUR_SUPABASE_URL";
+    const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+
+    // Client Supabase initialisé (utilise les placeholders ou fallback vers config existante)
+    const effectiveUrl = (SUPABASE_URL && SUPABASE_URL !== "YOUR_SUPABASE_URL") 
+      ? SUPABASE_URL 
+      : "https://znwcmypjlpgdsmpoaclc.supabase.co";
+
+    const effectiveKey = (SUPABASE_ANON_KEY && SUPABASE_ANON_KEY !== "YOUR_SUPABASE_ANON_KEY") 
+      ? SUPABASE_ANON_KEY 
+      : "sb_publishable_FYY7JDn0r8794PNvmkOagg_elygqqob";
+
+    const supabase = window.supabase.createClient(effectiveUrl, effectiveKey);
+
+    // ========================================================
+    // GESTION DU COMPTEUR DE MOTS EN TEMPS RÉEL (8 000 MOTS MIN)
+    // ========================================================
+    const contentTextarea = document.getElementById("episodeContent");
+    const wordCountNumber = document.getElementById("wordCountNumber");
+    const wordCountBadge = document.getElementById("wordCountBadge");
+    const wordProgressBar = document.getElementById("wordProgressBar");
+    const wordCountStatus = document.getElementById("wordCountStatus");
+    const pasteClipboardBtn = document.getElementById("pasteClipboardBtn");
+
+    function countWords(str) {
+      if (!str) return 0;
+      const matches = str.trim().match(/[\w\d\u00C0-\u017F'-]+/gi);
+      return matches ? matches.length : 0;
+    }
+
+    function updateWordStats() {
+      const text = contentTextarea.value;
+      const count = countWords(text);
+      wordCountNumber.textContent = count.toLocaleString('fr-FR');
+
+      const percent = Math.min(100, Math.round((count / 8000) * 100));
+      wordProgressBar.style.width = percent + "%";
+
+      if (count >= 8000) {
+        wordCountBadge.className = "flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/40 shadow-sm";
+        wordCountStatus.innerHTML = `<span class="text-green-400 font-semibold"><i class="fa-solid fa-check-circle"></i> Longueur validée : ${count.toLocaleString('fr-FR')} mots. Éligible à la publication !</span>`;
+      } else {
+        const remaining = 8000 - count;
+        wordCountBadge.className = "flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold bg-purple-950/80 text-purple-300 border border-purple-800/40";
+        wordCountStatus.innerHTML = `<span class="text-amber-400/90 font-medium">Il manque encore ${remaining.toLocaleString('fr-FR')} mots pour atteindre le seuil de 8 000 mots.</span>`;
+      }
+    }
+
+    contentTextarea.addEventListener("input", updateWordStats);
+
+    if (pasteClipboardBtn) {
+      pasteClipboardBtn.addEventListener("click", async () => {
+        try {
+          const text = await navigator.clipboard.readText();
+          if (text) {
+            contentTextarea.value = (contentTextarea.value ? contentTextarea.value + "\n\n" : "") + text;
+            updateWordStats();
+          }
+        } catch (err) {
+          alert("Veuillez autoriser l'accès au presse-papier ou coller directement avec Ctrl+V / Cmd+V.");
+        }
+      });
+    }
+
+    // ========================================================
+    // AFFICHAGE DES ALERTES
+    // ========================================================
+    const alertBox = document.getElementById("alertBox");
+    const alertIcon = document.getElementById("alertIcon");
+    const alertTitle = document.getElementById("alertTitle");
+    const alertMessage = document.getElementById("alertMessage");
+    const alertCloseBtn = document.getElementById("alertCloseBtn");
+
+    function showAlert(type, title, message) {
+      alertBox.classList.remove("hidden");
+      if (type === "success") {
+        alertBox.className = "mb-8 p-5 rounded-2xl border bg-green-500/15 border-green-500/40 text-green-200 shadow-xl shadow-green-950/30";
+        alertIcon.innerHTML = `<i class="fa-solid fa-circle-check text-green-400"></i>`;
+      } else {
+        alertBox.className = "mb-8 p-5 rounded-2xl border bg-red-500/15 border-red-500/40 text-red-200 shadow-xl shadow-red-950/30";
+        alertIcon.innerHTML = `<i class="fa-solid fa-circle-exclamation text-red-400"></i>`;
+      }
+      alertTitle.textContent = title;
+      alertMessage.textContent = message;
+      alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    alertCloseBtn.addEventListener("click", () => {
+      alertBox.classList.add("hidden");
+    });
+
+    // ========================================================
+    // SOUMISSION DU FORMULAIRE DANS SUPABASE
+    // ========================================================
+    const form = document.getElementById("submissionForm");
+    const submitBtn = document.getElementById("submitBtn");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const title = document.getElementById("storyTitle").value.trim();
+      const genre = document.getElementById("storyGenre").value;
+      const author_name = document.getElementById("authorName").value.trim();
+      const author_email = document.getElementById("authorEmail").value.trim();
+      const author_wallet = document.getElementById("authorWallet").value.trim();
+      const content = contentTextarea.value.trim();
+      const certify = document.getElementById("certifyCheckbox").checked;
+
+      // Validation des champs
+      if (!title || !genre || !author_name || !author_email || !author_wallet || !content) {
+        showAlert("error", "Champs Incomplets", "Veuillez renseigner tous les champs obligatoires du formulaire.");
+        return;
+      }
+
+      if (!certify) {
+        showAlert("error", "Certification Requise", "Vous devez certifier être majeur et auteur original de l'œuvre.");
+        return;
+      }
+
+      const words = countWords(content);
+      if (words < 8000) {
+        showAlert("error", "Manuscrit Trop Court", `Votre texte comporte actuellement ${words.toLocaleString('fr-FR')} mots. Le seuil minimum fixé par la ligne éditoriale de Fallen Stories est de 8 000 mots pour l'épisode 1.`);
+        return;
+      }
+
+      // Verrouiller le bouton pendant la soumission
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> <span>Enregistrement du manuscrit dans Supabase...</span>`;
+
+      try {
+        const payload = {
+          title: title,
+          genre: genre,
+          content: content,
+          author_name: author_name,
+          author_email: author_email,
+          author_wallet: author_wallet,
+          status: 'pending',
+          your_share: 40,
+          author_share: 60
+        };
+
+        const { data, error } = await supabase
+          .from('submissions')
+          .insert([payload]);
+
+        if (error) {
+          throw error;
+        }
+
+        // Message de succès demandé :
+        // "Histoire soumise, en cours de modération. Tu toucheras 60% des ventes."
+        showAlert(
+          "success",
+          "Succès !",
+          "Histoire soumise, en cours de modération. Tu toucheras 60% des ventes."
+        );
+
+        // Réinitialisation du formulaire
+        form.reset();
+        updateWordStats();
+
+      } catch (err) {
+        console.error("Erreur lors de l'insertion dans Supabase :", err);
+        showAlert(
+          "error", 
+          "Erreur d'Enregistrement", 
+          err.message || "Une erreur est survenue lors de la communication avec Supabase. Vérifiez vos identifiants ou votre connexion."
+        );
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> <span>Soumettre l'Histoire pour Modération</span>`;
+      }
+    });
+  </script>
+</body>
+</html>
