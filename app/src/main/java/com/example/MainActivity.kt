@@ -8,8 +8,10 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
 import android.webkit.ConsoleMessage
+import android.webkit.RenderProcessGoneDetail
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
@@ -259,6 +261,11 @@ fun AndroidWebViewContainer(
           ViewGroup.LayoutParams.MATCH_PARENT
         )
 
+        // Force software layer rendering to bypass Mesa GPU rendernode errors in headless/cloud emulator
+        try {
+          setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+        } catch (_: Exception) {}
+
         setBackgroundColor(android.graphics.Color.parseColor("#08090D"))
 
         settings.apply {
@@ -279,6 +286,11 @@ fun AndroidWebViewContainer(
         }
 
         webViewClient = object : WebViewClient() {
+          override fun onRenderProcessGone(view: WebView?, detail: RenderProcessGoneDetail?): Boolean {
+            // Avoid crash if rendering process is terminated in container
+            return true
+          }
+
           override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
             onHistoryStateChanged(canGoBack())
