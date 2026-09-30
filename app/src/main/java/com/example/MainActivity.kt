@@ -273,7 +273,6 @@ fun AndroidWebViewContainer(
           domStorageEnabled = true
           allowFileAccess = true
           allowContentAccess = true
-          databaseEnabled = true
           useWideViewPort = true
           loadWithOverviewMode = true
           mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
