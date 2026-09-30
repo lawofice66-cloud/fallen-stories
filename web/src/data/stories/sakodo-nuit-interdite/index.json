@@ -12,7 +12,7 @@
   "isEbook": true,
   "badge": "EBOOK 5 x 3000 mots",
   "totalEpisodes": 5,
-  "totalWordCount": 15600,
+  "totalWordCount": 13945,
   "views": 4250,
   "episodes": [
     {
@@ -20,8 +20,8 @@
       "episode": 1,
       "titre": "Le Reflet des Néons Écarlates",
       "isFree": true,
-      "price": 0.00,
-      "wordCount": 3120,
+      "price": 0.0,
+      "wordCount": 2777,
       "file": "episode-1.json"
     },
     {
@@ -30,7 +30,7 @@
       "titre": "Murmures dans la Pénombre",
       "isFree": false,
       "price": 0.99,
-      "wordCount": 3080,
+      "wordCount": 2775,
       "file": "episode-2.json"
     },
     {
@@ -39,7 +39,7 @@
       "titre": "Le Frisson de l'Étreinte",
       "isFree": false,
       "price": 0.99,
-      "wordCount": 3150,
+      "wordCount": 2775,
       "file": "episode-3.json"
     },
     {
@@ -48,7 +48,7 @@
       "titre": "Au-Delà du Vertige",
       "isFree": false,
       "price": 0.99,
-      "wordCount": 3110,
+      "wordCount": 2813,
       "file": "episode-4.json"
     },
     {
@@ -57,7 +57,7 @@
       "titre": "L'Aube des Inavouables",
       "isFree": false,
       "price": 0.99,
-      "wordCount": 3140,
+      "wordCount": 2805,
       "file": "episode-5.json"
     }
   ]
