@@ -1,7 +1,14 @@
 {
   "id": "sakodo-nuit-interdite",
-  "saga": "Sakodo - Nuit Interdite",
-  "titre": "Sakodo - Nuit Interdite",
+  "slug": "sakodo-nuit-interdite",
+  "title": "Sakodo - La Nuit Interdite",
+  "titre": "Sakodo - La Nuit Interdite",
+  "saga": "Sakodo - La Nuit Interdite",
+  "episodes": 5,
+  "totalEpisodes": 5,
+  "totalWords": 13945,
+  "totalWordCount": 13945,
+  "status": "published",
   "categorie": "Érotisme",
   "genre": "Érotisme",
   "personnage": "sakodo",
@@ -11,10 +18,8 @@
   "description": "Dans la mégalopole cyberpunk de Neo-Kuro sous une pluie de néons écarlates, Sakodo franchit les frontières de l'interdit lors d'une nuit de vertige, de soie et de désirs inavouables. Un ebook érotique complet en 5 longs chapitres intenses et littéraires.",
   "isEbook": true,
   "badge": "EBOOK 5 x 3000 mots",
-  "totalEpisodes": 5,
-  "totalWordCount": 13945,
   "views": 4250,
-  "episodes": [
+  "episodesList": [
     {
       "id": "sakodo-nuit-interdite-ep1",
       "episode": 1,

@@ -223,18 +223,24 @@ function setLanguage(lang) {
 
 const SAKODO_SAGA_DATA = {
   id: "sakodo-nuit-interdite",
-  saga: "Sakodo - Nuit Interdite",
-  title: "Sakodo - Nuit Interdite",
+  slug: "sakodo-nuit-interdite",
+  saga: "Sakodo - La Nuit Interdite",
+  title: "Sakodo - La Nuit Interdite",
+  titre: "Sakodo - La Nuit Interdite",
   genre: "Érotisme",
+  categorie: "Érotisme",
   author_name: "Sakodo",
   preset: "Cyberpunk Neon + Sensuel Ombre + Nuit Interdite",
   cover_url: "https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=800",
-  description: "Dans la mégalopole cyberpunk sous une pluie de néons, Sakodo franchit les frontières de l'interdit lors d'une nuit de vertige, de soie et de désirs inavouables. Un ebook érotique en 5 épisodes intenses et littéraires.",
+  description: "Dans la mégalopole cyberpunk de Neo-Kuro sous une pluie de néons écarlates, Sakodo franchit les frontières de l'interdit lors d'une nuit de vertige, de soie et de désirs inavouables. Un ebook érotique complet en 5 longs chapitres intenses et littéraires.",
   isEbook: true,
   badge: "EBOOK 5 x 3000 mots",
+  episodes: 5,
   totalEpisodes: 5,
+  totalWords: 13945,
+  totalWordCount: 13945,
   views: 4250,
-  status: "approved",
+  status: "published",
   created_at: new Date(Date.now() - 3600000 * 24 * 2).toISOString()
 };
 
@@ -702,7 +708,9 @@ async function fetchStoriesFromSupabase() {
       return;
     }
 
-    APP_STATE.stories = data || [];
+    const remoteStories = data || [];
+    const hasOfficial = remoteStories.some(s => s.id === SAKODO_SAGA_DATA.id || s.slug === "sakodo-nuit-interdite" || (s.title && s.title.includes("Sakodo")));
+    APP_STATE.stories = hasOfficial ? remoteStories : [SAKODO_SAGA_DATA, ...remoteStories];
     renderStoriesGrid();
     renderTopCreators();
     updateDashboardStats();
@@ -723,7 +731,7 @@ function loadLocalStories() {
 }
 
 async function fetchEpisodesForStory(storyId) {
-  if (storyId === "sakodo-nuit-interdite") {
+  if (storyId === "sakodo-nuit-interdite" || (typeof storyId === "string" && storyId.includes("sakodo"))) {
     return SAKODO_EPISODES_DATA;
   }
 
