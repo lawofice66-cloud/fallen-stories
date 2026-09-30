@@ -2176,6 +2176,11 @@ document.addEventListener("DOMContentLoaded", () => {
   setupAuth();
   setupEventListeners();
 
-  // Chargement initial des histoires (la plateforme démarre vierge si aucune histoire n'a été insérée)
+  // Rendu immédiat avec la saga officielle (1 récit garanti dès l'ouverture)
+  renderStoriesGrid();
+  renderTopCreators();
+  updateDashboardStats();
+
+  // Chargement complémentaire Supabase si connecté
   fetchStoriesFromSupabase();
 });
