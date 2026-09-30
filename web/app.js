@@ -3,7 +3,8 @@
  * Plateforme littéraire sombre et transgressive
  * Supabase DB + NOWPayments Crypto Gateway + Studio Créateurs
  */
-
+const APP_STATE = window.APP_STATE || { currentTab: 'home', stories: [], creators: [], isLoading: false };
+window.APP_STATE = APP_STATE;
 // ============================================================================
 // 1. CONFIGURATION & CLIENT SUPABASE
 // ============================================================================
